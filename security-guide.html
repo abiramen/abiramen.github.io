@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The Hitchhiker's Guide to Security | abiram.me</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link type="application/atom+xml" rel="alternate" href="/feed.xml">
+    <link rel="shortcut icon" href="/assets/images/ramen-bricks.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet">
+    <meta name="theme-color" content="#000000"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>The Hitchhiker’s Guide to Security | the ramen space</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="The Hitchhiker’s Guide to Security" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is currently a draft version which I released for CompClub. Check back in a month for the complete version." />
+<meta property="og:description" content="This is currently a draft version which I released for CompClub. Check back in a month for the complete version." />
+<meta property="og:site_name" content="the ramen space" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-15T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"This is currently a draft version which I released for CompClub. Check back in a month for the complete version.","mainEntityOfPage":{"@type":"WebPage","@id":"/security-guide"},"url":"/security-guide","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/ramen-bricks.png"}},"headline":"The Hitchhiker’s Guide to Security","dateModified":"2021-01-15T00:00:00+00:00","datePublished":"2021-01-15T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    
+    <nav id = "navbar">
+    <div id="nav-contain">
+        <a href="/" id="navbar-logo">
+            <img src="/assets/images/ramen-logo.png" alt="neon-logo" id="logo"/>
+        </a>
+        <div id="nav-home">
+            <a href="/" id="navbar-name">@abiramen</a>
+        </div>
+
+        <div id="nav-right">
+            <a href="/projects">Projects</a>
+            <a href="/posts">Posts</a>
+        </div>
+
+        <img src="/assets/images/hamburger.svg" alt="hamburger" id="hamburger"/>
+        <div id="nav-border"></div>
+    </div>
+</nav>
+
+<div id="overlay">
+    <span id="overlay-close">&times;</span>
+    <div id="overlay-content">
+        <a href="/"><img src="/assets/images/ramen-logo.png" alt="neon-logo" id="overlay-logo"/></a>
+        <h3>@abiramen</h3>
+        <a href="/projects">Projects</a>
+        <a href="/posts">Posts</a>
+    </div>
+</div>
+
+    
+    <link rel="stylesheet" href="/assets/css/post.css" />
+<link rel="stylesheet" href="/assets/css/tags.css" />
+<link rel="stylesheet" href="/assets/vendor/littlefoot/littlefoot.css" />
+
+<div id="post-splash" class="splash">
+    <div class="container">
+        <div id="splash-text" class="post-desc">
+            <div id="post-head">
+                <span id="post-date">15 January 2021 </span> 
+            </div>
+            <div id="post-title">The Hitchhiker's Guide to Security</div>
+            <div id="post-time"></div>
+            <div id="post-desc">don't get hacked!</div>
+            <div id="post-tags">
+                Tags:  
+                <a class="tag-link" href=/tags/security rel="category tag">
+                    <span class="post-tag">security</span>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    <a id="scroll-arrow" class="page-anchor-offset post-arrow" href="#post-contents">
+        <div class="icon">keyboard_arrow_down</div>
+    </a>
+
+</div>
+
+<div id="post-contents" class="container">
+    <p><strong>This is currently a draft version which I released for CompClub. Check back in a month for the complete version.</strong></p>
+
+<p><em>so remember, don’t give out your name and personal information to strangers online !!</em></p>
+
+<p>Yeah, no. This article is going to assume that you’ve grown up with the Internet and have some common sense. However, this guide is not for you if:</p>
+<ul>
+  <li>you’re being targeted by state-sponsored hackers, or someone really has a vendetta against you. At that point, you should probably seek some expert advice.</li>
+  <li>you’re some whiz and this is amateur stuff - yeah, I’m sorry …</li>
+</ul>
+
+<h3 id="la-table-des-matières">La table des matières</h3>
+<ul>
+  <li><a href="#curb-your-insecurity" class="page-anchor-offset">Curb your insecurity</a></li>
+  <li><a href="#passwords" class="page-anchor-offset">Passwords</a></li>
+  <li><a href="#to-catch-a-phish" class="page-anchor-offset">Gone phishing</a></li>
+  <li><a href="#multi-factor-authentication" class="page-anchor-offset">Multi-factor authentication</a></li>
+  <li><a href="#browser-extensions" class="page-anchor-offset">Browser extensions</a></li>
+</ul>
+
+<h2 id="curb-your-insecurity">Curb your insecurity</h2>
+<p>There’s a good chance that you’ve seen this padlock in your browser, and understood that it has something to do with security, but not fully understand the implications of it.</p>
+
+<p><img src="/assets/images/blog/security-guide/https-padlock.jpg" alt="HTTPS padlock" />
+You probably also know that the S in HTTPS stands for ‘secure’. The only guarantee that HTTPS provides over regular HTTP is that the contents of your communication with the website can only be read by your own computer and the website, and has not been tampered with along the way, either by a nefarious hacker, or your Internet Service Provider (or ISP, such as Telstra and Optus).</p>
+
+<p>It’s worth noting that your ISP can only figure out what web server you’re connected to, but not exactly what webpage. For example, if you’re watching the YouTube video <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">at this URL</a>, your ISP would only be able to figure out that you visited YouTube, but not know what exact video you watched. <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup></p>
+
+<p>You shouldn’t enter sensitive information, especially banking information and passwords, if a site isn’t using HTTPS. Almost every site in 2020 uses HTTPS, and there’s no reason for a website not to.</p>
+
+<p><img src="/assets/images/blog/security-guide/certificate-error.jpg" alt="Certificate error" /></p>
+
+<p>You may have also seen warning messages like the above. Messages like these are more likely due to misconfigurations by the website owner, or an issue up the chain of trust which HTTPS depends on. If you decide to click past the warning, you should treat the site as if it is using HTTP, and understand that your communication with the site is unencrypted.</p>
+
+<h2 id="passwords">Passwords</h2>
+
+<p>Of course, a malicious hacker doesn’t need to bother to trick you when they could just <em>become</em> you, which is why following good password practices is extremely important.</p>
+
+<p>You’ve probably seen the message to use different passwords on different websites before, and maybe you’ve been too lazy to do this yourself - I wasn’t bothered to do this until a few years ago. <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup> This is a terrible idea, however - inevitably, a website you use is going to leak their passwords in some form, and it’s not hard for someone to attempt to reuse your password on another site using an automated script.</p>
+
+<h3 id="have-i-already-been-compromised">Have I already been compromised?</h3>
+
+<p><a href="https://haveibeenpwned.com/">have i been pwned?</a> is a reputable way to check if your email address has been associated with any data breaches. If you find yourself there, make sure that you change your password for that site, and make sure to change your password for any other sites that might be using the same password.</p>
+
+<h3 id="some-basic-password-rules">Some basic password rules</h3>
+<ul>
+  <li>Have a nice mix of uppercase, lowercase, numbers and symbols.</li>
+  <li>Avoid having a common words/phrases as your password - these are easier to guess, in what’s known as a dictionary attack.</li>
+  <li>Have a different password for each website/service.</li>
+</ul>
+
+<p>Even chaining four <em>random</em> words together isn’t too bad of a password <strong>if</strong> you throw in a few random numbers and symbols. There’s a classic <a href="https://xkcd.com/936/" target="_blank">comic</a> that’s well known amongst the security community:</p>
+
+<p><img src="https://imgs.xkcd.com/comics/password_strength.png" alt="Password strength XKCD" /></p>
+
+<h3 id="choosing-passwords">Choosing passwords</h3>
+
+<p>I personally use a password manager for all but a small few of my passwords. For the rest of my passwords, I splice together lyrics from some songs I like (although not my favourites, since that’s relatively easy to determine with some quick Googling), and throw in a bunch of numbers and symbols randomly. This means that I can sing along my passwords in my head, while still having something that’s strong and 30+ characters long.</p>
+
+<h3 id="password-managers">Password managers</h3>
+
+<p>Having a password manager saves you the effort of having to memorise different passwords for different websites - instead, you use a super-strong ‘master password’ on the password manager, and then the password manager generates and stores secure passwords for other websites. Many solid password managers exist, and even using Google’s password manager across Chrome and Android for unique passwords is a massive improvement for most people’s security.</p>
+
+<p>I personally use LastPass - it seems to be very thoroughly audited and verified, has a strong feature set, and is popular amongst the security community.</p>
+
+<h2 id="gone-phishing">Gone phishing</h2>
+<p>However, you shouldn’t trust a website just because it’s using HTTPS. The original inspiration for this blogpost was a long Facebook post I ended up over a year ago, after a large chain of phishing attacks <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup> on Facebook Messenger. Most messages looked something like this:</p>
+
+<p><img src="/assets/images/blog/security-guide/phishy.jpg" alt="A phishy message" /></p>
+
+<p>Clicking that link led to a Facebook post, which had a fake URL to a ‘YouTube’ video. That URL led to this…
+<img src="/assets/images/blog/security-guide/facebook-phish.jpg" alt="Not very real Facebook" /></p>
+
+<p>There’s a few red flags here.</p>
+<ul>
+  <li>This Facebook login page looks nothing like the real Facebook login page.</li>
+  <li>The URL looks like a random mess which does not say ‘facebook.com’.</li>
+  <li>You’re being asked to log in to Facebook, to watch what is supposedly a YouTube video?</li>
+</ul>
+
+<p>Some questions you can ask yourself before clicking on a link you didn’t expect to receive are:</p>
+<ul>
+  <li><strong>Does this URL seem to be legitimate? :</strong> You can often search for the domain (the first part of the domain, for example, www.google.com) to check if it’s a legitimate domain owned by a company.</li>
+  <li><strong>Does the person who sent me the link normally talk to me? :</strong> If you’re receiving a message from someone that doesn’t normally talk to you, or the grammar/structure of their message doesn’t seem quite right, it’s probably sus.</li>
+  <li><strong>Why am I being asked for a password? :</strong> If you’re already logged into a site like Facebook or Google, you generally won’t be requested for a username or password again. Look closely at the URL of the login page, and make sure it matches the service you’re logging in with.</li>
+</ul>
+
+<h2 id="multi-factor-authentication">Multi-factor authentication</h2>
+
+<p>Multi-factor authentication is a way to mitigate the impact of your password being leaked, or stolen in a phishing attack. Typical login systems only involve one factor - your password.</p>
+
+<p>There are three different types of factors that we can involve in a login system:</p>
+<ul>
+  <li>something you know (such as a typical password)</li>
+  <li>something you are (biometrics, such as fingerprints)</li>
+  <li>something you have (such as your phone)</li>
+</ul>
+
+<p>Enabling multi-factor authentication typically involves using the first 2. This means that once you enter your password, you’ll be asked to enter a code from your phone. This means that a stolen password isn’t enough to log in as you.</p>
+
+<p>I recommend enabling multi-factor authentication for things such as your email, Facebook and bank accounts. I personally choose to use it for any service that supports it. You can find instructions on enabling multi-factor authentication, also known as two-factor authentication, usually on the Account Settings page for a service.</p>
+
+<h2 id="browser-extensions">Browser extensions</h2>
+
+<p>A lot of people seem to use browser extensions without giving it too much thought. However, a lot of browser extensions require you to provide access to all data on sites you visit. An evil extension could use this to steal your usernames and passwords as you type them in.</p>
+
+<p>This is why you should limit the access you provide to extensions. You can change which websites an extension has to on Chrome by visiting chrome://extensions, and then clicking on an extension which you want to change.</p>
+
+<p>For example, I have an extension called Video Speed Controller, which allows me to speed up and slow down videos as much as I want, but I only give it access to YouTube, Netflix and Disney Plus. The only extensions I have with full access are LastPass and uBlock Origin - a tradeoff I am willing to make for convenience.</p>
+
+<p>I’d also recommend using Guest mode on your browser when entering banking details.</p>
+
+<h2 id="more-content-coming-soon">More content coming soon!</h2>
+
+<h2 id="closing-remarks">Closing remarks</h2>
+<p><img src="/assets/images/blog/security-guide/closing-remarks.jpg" alt="Closing remarks" />
+If you’d like to reach out with feedback, my contact details are on the bottom of this page.</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>This means that your ISP won’t be able to shame you for being rickrolled :) <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>I had two-factor authentication on for anything important, but was still a bit naive. Mostly lazy, but still a bit naive. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>A phishing attack is an attempt to steal passwords or other sensitive information by posing as someone or something you trust. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    <script src="https://utteranc.es/client.js" repo="abiramen/site-utterances" issue-term="pathname" label="utteranc.es" theme="preferred-color-scheme" crossorigin="anonymous" async>
+    </script>
+</div>
+
+<script src="/assets/vendor/littlefoot/littlefoot.js"></script>
+
+    
+    <footer>
+    <div id = "footer-content">
+        <div id="contact">
+            <a href = "https://github.com/abiramen" target="_blank">GitHub: @abiramen</a><br>
+            <a href = "https://twitter.com/abiramen" target="_blank">Twitter: @abiramen</a><br>
+            println!("Email: {}@{}", "hi", "abiram.me");<br>
+            println!("Discord: {}#{}", "abiramen", 2452);
+        </div>
+        <div class="centre" id="love-and-ramen">Made with <span class="icon">favorite</span> and ramen by Abiram</div>
+        <img src="/assets/images/ramen-logo.png" id = "ramen-footer" width = "100px" alt="logo">
+        <div id="footer-flavour">You're at the bottom of this page. Or are you?</div>
+    </div>
+</footer>
+
+    <script src="/assets/js/common.js"></script>
+
+    
+    <script src="/assets/js/navbar.js"></script>
+    <script type="application/javascript">
+        littlefoot.default();
+    </script>
+    
+    <!-- Google Analytics scripts added by the NSA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128951835-2"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-128951835-2');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+        crossorigin="anonymous"></script>
+            
+  </body>
+</html>

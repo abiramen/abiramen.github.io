@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CSE and VS Code | abiram.me</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link type="application/atom+xml" rel="alternate" href="/feed.xml">
+    <link rel="shortcut icon" href="/assets/images/ramen-bricks.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet">
+    <meta name="theme-color" content="#000000"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>CSE and VS Code | the ramen space</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="CSE and VS Code" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hi there! If you’re new here, welcome to CSE! We’re going to be setting up a text editor called Visual Studio Code, or VS Code, to remotely work on the CSE computers without needing a VNC client!" />
+<meta property="og:description" content="Hi there! If you’re new here, welcome to CSE! We’re going to be setting up a text editor called Visual Studio Code, or VS Code, to remotely work on the CSE computers without needing a VNC client!" />
+<meta property="og:site_name" content="the ramen space" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-18T00:00:00+00:00" />
+<script type="application/ld+json">
+{"description":"Hi there! If you’re new here, welcome to CSE! We’re going to be setting up a text editor called Visual Studio Code, or VS Code, to remotely work on the CSE computers without needing a VNC client!","mainEntityOfPage":{"@type":"WebPage","@id":"/cse-setup"},"url":"/cse-setup","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/ramen-bricks.png"}},"headline":"CSE and VS Code","dateModified":"2020-09-18T00:00:00+00:00","datePublished":"2020-09-18T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    
+    <nav id = "navbar">
+    <div id="nav-contain">
+        <a href="/" id="navbar-logo">
+            <img src="/assets/images/ramen-logo.png" alt="neon-logo" id="logo"/>
+        </a>
+        <div id="nav-home">
+            <a href="/" id="navbar-name">@abiramen</a>
+        </div>
+
+        <div id="nav-right">
+            <a href="/projects">Projects</a>
+            <a href="/posts">Posts</a>
+        </div>
+
+        <img src="/assets/images/hamburger.svg" alt="hamburger" id="hamburger"/>
+        <div id="nav-border"></div>
+    </div>
+</nav>
+
+<div id="overlay">
+    <span id="overlay-close">&times;</span>
+    <div id="overlay-content">
+        <a href="/"><img src="/assets/images/ramen-logo.png" alt="neon-logo" id="overlay-logo"/></a>
+        <h3>@abiramen</h3>
+        <a href="/projects">Projects</a>
+        <a href="/posts">Posts</a>
+    </div>
+</div>
+
+    
+    <link rel="stylesheet" href="/assets/css/post.css" />
+<link rel="stylesheet" href="/assets/css/tags.css" />
+<link rel="stylesheet" href="/assets/vendor/littlefoot/littlefoot.css" />
+
+<div id="post-splash" class="splash">
+    <div class="container">
+        <div id="splash-text" class="post-desc">
+            <div id="post-head">
+                <span id="post-date">13 April 2020  (Updated 1 June 2021) </span> 
+            </div>
+            <div id="post-title">CSE and VS Code</div>
+            <div id="post-time"></div>
+            <div id="post-desc">If you're a UNSW CSE student, this post is here to introduce you to Visual Studio Code, and SSH. There's also some bonus coins if you make it to the end.</div>
+            <div id="post-tags">
+                Tags:  
+                <a class="tag-link" href=/tags/unsw-cse rel="category tag">
+                    <span class="post-tag">unsw-cse</span>
+                </a>
+                 
+                <a class="tag-link" href=/tags/guide rel="category tag">
+                    <span class="post-tag">guide</span>
+                </a>
+                 
+                <a class="tag-link" href=/tags/vscode rel="category tag">
+                    <span class="post-tag">vscode</span>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    <a id="scroll-arrow" class="page-anchor-offset post-arrow" href="#post-contents">
+        <div class="icon">keyboard_arrow_down</div>
+    </a>
+
+</div>
+
+<div id="post-contents" class="container">
+    <p>Hi there! If you’re new here, welcome to CSE! We’re going to be setting up a text editor called Visual Studio Code, or VS Code, to remotely work on the CSE computers without needing a VNC client!</p>
+
+<h2 id="why-are-we-doing-this">Why are we doing this?</h2>
+
+<p>You’ve likely used a program called TigerVNC to connect to the School of CSE’s computers before, which provides a visual interface (or ‘GUI’). This provides you with a full desktop environment. The experience you get out of this is very similar to the experience you would get out of sitting in front of a physical computer on campus.</p>
+
+<p>If you’re currently doing COMP1511, I would strongly advise you to use the Xfce desktop environment and gedit over TigerVNC for the first week, just to familiarise yourself with it. Don’t take your experience with it as a sign that Linux has to be ugly either - <a href="https://reddit.com/r/unixporn" target="_blank">this subreddit has plenty of proof otherwise</a>. (Despite the name, I promise it’s safe for work.)</p>
+
+<p>More importantly, under normal circumstances, you would be doing your exams in front of a similarly configured physical computer on campus. As of the start of 2021 however, it seems you’re generally free to use whatever setup you wish.</p>
+
+<p>The solution we’re about to go through provides a more seamless coding experience without having to load a full visual interface from CSE computers. This has the added benefits of not being affected by compression, especially if you have a poor connection, and other latency issues.</p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p>First of all, we’re going to acquaint ourselves with Visual Studio Code, or VS Code. You’ve likely been introduced to a tool called gedit which allows you to write files of text (including code), or what’s called a text editor. VS Code does this, but it provides many more great features on top. To get started, you’ll need to install VS Code on your own computer, whether it be Windows, macOS or Linux.</p>
+
+<ol>
+  <li><strong>Download and install Visual Studio Code.</strong> You can find a download <a href="https://code.visualstudio.com/download" target="_blank">here</a>.</li>
+  <li><strong>If prompted to do so during the installation process</strong>, select the checkbox which says ‘Add to PATH’.</li>
+  <li><strong>Restart your computer once you’re done.</strong></li>
+</ol>
+
+<p>You should now have VS Code installed! You can now edit files on your own computer, but that’s not quite what we want - our goal is to edit files on CSE machines.</p>
+
+<h2 id="our-friend-ssh">Our friend, SSH</h2>
+<p>Some cool computer scientists invented a way (or more specifically, a set of rules, or protocols) to allow you to communicate with remote computers over the internet, called SSH, or Secure Shell. This allows us to edit files on another computer, such as the CSE servers, and run commands through a terminal on CSE servers.</p>
+
+<p>Luckily for us, VS Code has a way to use SSH to allow you to edit files and run commands on other computers.</p>
+
+<div class="alert">
+  <p>If you’re on macOS, use <kbd>Cmd</kbd> instead of <kbd>Ctrl</kbd>.</p>
+</div>
+
+<h3 id="part-1-getting-started">Part 1: Getting started</h3>
+<ol>
+  <li><strong>Open VS Code.</strong></li>
+  <li><strong>Open the Extensions menu.</strong> You can access it using <code class="language-plaintext highlighter-rouge">Ctrl+Shift+X</code>.</li>
+  <li><strong>Search for and install the Remote-SSH extension.</strong> Once this is done, you might be prompted to reload the window.
+ <img src="/assets/images/blog/cse-setup/ssh-extension.jpg" alt="Install the SSH extension." /></li>
+</ol>
+
+<h3 id="part-2-improving-security">Part 2: Improving security</h3>
+
+<div class="alert">
+  <p>Not performing this step can make your CSE account accessible to anyone while you’re connected. Accounts that don’t enable this will not be able to use VS Code to connect to CSE computers in the future.</p>
+</div>
+
+<ol>
+  <li><strong>Open the VS Code settings pane.</strong> To do this, click the settings icon near the bottom left, or use <code class="language-plaintext highlighter-rouge">Ctrl+,</code>.</li>
+  <li><strong>Search for ‘Remote Server Listen on Socket’.</strong> Tick the corresponding checkbox once it appears.
+<img src="/assets/images/blog/cse-setup/socket.jpg" alt="Enable the Remote Server Listen on Socket option" /></li>
+  <li><strong>Search for ‘Lockfiles In Tmp’.</strong> Again, select the corresponding checkbox.
+<img src="/assets/images/blog/cse-setup/lockfiles.jpg" alt="Lockfiles in Tmp" /></li>
+  <li>Close and reopen VS Code.</li>
+</ol>
+
+<p>Congrats! You’re now safer from nefarious hackers, or inadvertent intruders.</p>
+
+<p>Note: If you’re coming here from the older version of my guide, please switch to using <strong>vscode.cse.unsw.edu.au</strong>, rather than login, wagner, weill or williams. If not you can ignore this.</p>
+
+<h3 id="part-3-logging-in">Part 3: Logging in</h3>
+<ol>
+  <li>
+    <p><strong>Open the Remote-SSH menu.</strong> This can be done by clicking this button</p>
+
+    <p><img src="/assets/images/blog/cse-setup/ssh-icon.jpg" alt="SSH Icon" /> 
+in the bottom left. The menu should look like this:</p>
+
+    <p><img src="/assets/images/blog/cse-setup/ssh-menu.jpg" alt="SSH menu" /></p>
+  </li>
+  <li><strong>Click Connect to Host.</strong> In the field that shows up, type in <code class="language-plaintext highlighter-rouge">z5555555@vscode.cse.unsw.edu.au</code>, using your zID instead. Hit <kbd>Enter</kbd>.
+ A new window will open.</li>
+  <li><strong>If asked to select a remote platform</strong>, select Linux.</li>
+  <li><strong>Enter your password when prompted.</strong> If your password is wrong, you will prompted to retry. Once you’ve done that, you should be connected successfully!
+    <ul>
+      <li>Use <kbd>Ctrl+O</kbd> to open a file.</li>
+      <li>Use <kbd>Ctrl+`</kbd> (that’s the key to the left of the number row) to open a terminal pane.
+This is exactly like a terminal window in TigerVNC. You can run <code>ls</code> to see your files!</li>
+    </ul>
+  </li>
+  <li><strong>We can save some time by adding this to our hosts list.</strong> Click the SSH icon in the bottom left again, click Connect to Host, and this time, click <strong>Add New SSH Host.</strong></li>
+  <li><strong>Enter the following command:</strong> <code class="language-plaintext highlighter-rouge">ssh z5555555@vscode.cse.unsw.edu.au</code>, replacing with your own zID again, and hit <kbd>Enter</kbd>. If prompted which configuration file to save to, select the first one.</li>
+  <li><strong>You should now see vscode.cse.unsw.edu.au on the Connect to Host menu.</strong> This means you don’t have to type it in each time.
+ <img src="/assets/images/blog/cse-setup/ssh-menu-2.jpg" alt="SSH menu" />
+If you had an issue, scroll down to <a href="#troubleshooting" class="page-anchor-offset">troubleshooting</a> section.</li>
+</ol>
+
+<h3 id="part-4-vscode2---electric-boogaloo">Part 4: vscode2 - Electric Boogaloo</h3>
+
+<p>vscode.cse.unsw.edu.au connects you to a CSE server called <code class="language-plaintext highlighter-rouge">corelli</code>, which works fine most of the time. However, the server software VS Code uses in order to form a connection is quite resource intensive, and can often eat up all the resources that <code class="language-plaintext highlighter-rouge">corelli</code> has available.</p>
+
+<p>Thankfully, CSE has set up a second server called <code class="language-plaintext highlighter-rouge">mandolin</code> you can use in case you’re having issues with corelli.</p>
+
+<p>To set up your VS Code to be able to connect to <code class="language-plaintext highlighter-rouge">mandolin</code>, repeat Part 3, but replace all occurrences of <code class="language-plaintext highlighter-rouge">z5555555@vscode.cse.unsw.edu.au</code> with <code class="language-plaintext highlighter-rouge">z5555555@vscode2.cse.unsw.edu.au</code>. That’s right, you just need to stick a <code class="language-plaintext highlighter-rouge">2</code> after <code class="language-plaintext highlighter-rouge">vscode</code>!</p>
+
+<p>You can connect to <code class="language-plaintext highlighter-rouge">mandolin</code> if <code class="language-plaintext highlighter-rouge">corelli</code> ever feels slow, which it might during assignment season.</p>
+
+<h2 id="making-vs-code-even-cooler">Making VS Code even cooler</h2>
+
+<p><img src="/assets/images/blog/cse-setup/vscode.jpg" alt="My VS Code over SSH" /></p>
+
+<h3 id="editor-rulers">Editor rulers</h3>
+<p>The COMP1511 style guide requires you to make sure your lines of code aren’t longer than 80 characters (and it’s good practice to do so!). You can make VS Code show a handy little ruler to make sure your lines aren’t too long.</p>
+
+<ol>
+  <li><strong>Open the settings.json file.</strong> To do this, press <kbd>Ctrl+Shift+P</kbd> and search for <strong>Open Settings (JSON).</strong> A file should open.</li>
+  <li><strong>We need to add to this file.</strong> You should see that the last line is a curly brace like this: <code>}</code>. What we want to do is add a comma to the second last line. Then, create a new line after the comma, and paste this:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"[c]" :{
+ "editor.rulers" : [
+     80
+ ]
+}
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="the-cc-extension">The C/C++ extension</h3>
+<p>The VS Code C/C++ extension will make your life a lot easier when coding. To install it,</p>
+<ol>
+  <li><strong>Open a Remote-SSH window</strong> and connect to CSE servers.</li>
+  <li><strong>Open the Extensions pane</strong> by using <code class="language-plaintext highlighter-rouge">Ctrl+Shift+X</code>.</li>
+  <li>Search for C/C++ and install the extension by Microsoft.</li>
+</ol>
+
+<h3 id="other-extensions">Other extensions</h3>
+<p>VS Code has heaps of themes and extensions. Some which I use:</p>
+<ul>
+  <li><strong>C/C++ Snippets.</strong> Occasionally saves time with suggestions. Make sure to install from your Remote-SSH window.</li>
+  <li><strong>Material Icon Theme.</strong></li>
+  <li><strong>Dainty and Dainty - Material Theme.</strong> I personally use Dainty - Material Theme Ocean.</li>
+  <li><strong>Discord Rich Presence.</strong> If you use Discord, then it’ll update your currently playing status with details of what you’re coding on. If one of your friends tries to drag you into a voice call, you can just open up VS Code and tell them that you’re busy working :P</li>
+</ul>
+
+<h2 id="bonus-coins-ssh-and-ssh-keys">Bonus coins: SSH and SSH keys</h2>
+<p>Congrats! You made it to the bonus section. Following these instructions will mean you won’t be asked for a password each time you open a new SSH window, while still keep your connection secure, using magic in the form of mathematics.</p>
+
+<h4 id="part-1-generate-a-keypair">Part 1: Generate a keypair</h4>
+<h5 id="windows-10">Windows 10</h5>
+
+<ol>
+  <li><strong>Open the Windows Command Prompt.</strong> You can do this by entering <code class="language-plaintext highlighter-rouge">cmd</code> in Search.</li>
+  <li><strong>Generate a keypair.</strong>  Use the command <code class="language-plaintext highlighter-rouge">ssh-keygen -t rsa -b 4096</code>.</li>
+  <li><strong>You’ll be asked where you want to save the key.</strong> Leave this blank, and press <kbd>Enter</kbd>.</li>
+  <li><strong>You’ll be asked to set a password.</strong> Leave this blank, and press <kbd>Enter</kbd> again. Do the same when you are asked to confirm it.</li>
+  <li><strong>Using the same Command Prompt as before</strong>, enter the command <code class="language-plaintext highlighter-rouge">code "%userprofile%/.ssh/id_rsa.pub"</code>. This should open up a file in VS Code, starting with ssh-rsa and followed by a long mess of characters. <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> Don’t close this file, but use <kbd>Ctrl+A Ctrl+C</kbd> to copy the entire contents of this file.</li>
+</ol>
+
+<h5 id="linuxmacos">Linux/macOS</h5>
+
+<ol>
+  <li><strong>Open the Terminal.</strong></li>
+  <li><strong>Generate a keypair.</strong>  Use the command <code class="language-plaintext highlighter-rouge">ssh-keygen -t rsa -b 4096</code>.</li>
+  <li><strong>You’ll be asked where you want to save the key.</strong> Leave this blank, and press <kbd>Enter</kbd>.</li>
+  <li><strong>You’ll be asked to set a password.</strong> Leave this blank, and press <kbd>Enter</kbd> again. Do the same when you are asked to confirm it.</li>
+</ol>
+
+<p>Your computer has now generated two files: <code class="language-plaintext highlighter-rouge">id_rsa</code> and <code class="language-plaintext highlighter-rouge">id_rsa.pub</code>. The <code class="language-plaintext highlighter-rouge">id_rsa.pub</code> file is what’s called a public key, while <code class="language-plaintext highlighter-rouge">id_rsa</code> is a private key. <strong>Never share (or even open) your private key.</strong> It’s called a private key for a reason :P</p>
+
+<h4 id="part-2-using-the-keypair-for-cse-machines">Part 2: Using the keypair for CSE machines</h4>
+<p>Now, we need to tell the CSE computer that your computer is trustworthy, and you are who you claim to be. To do this, we need to give the CSE computer the public key you just generated. If you’re on Linux/macOS, this should be pretty easy, but if you’re on Windows 10, there’s a few more steps.</p>
+
+<h5 id="windows-10-1">Windows 10</h5>
+
+<ol>
+  <li>
+    <p><strong>Using your existing SSH or VLAB connection, open a terminal on the CSE computers.</strong> Run the following command. <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">2</a></sup></p>
+
+    <p><code class="language-plaintext highlighter-rouge">mkdir ~/.ssh;chmod 700 ~/.ssh;touch ~/.ssh/authorized_keys;chmod 600 ~/.ssh/authorized_keys;code ~/.ssh/authorized_keys</code></p>
+  </li>
+  <li>
+    <p><strong>A window for a file called authorized_keys should open in VS Code.</strong> Paste your public key from earlier into this file, and save.</p>
+  </li>
+</ol>
+
+<h5 id="linuxmacos-1">Linux/macOS</h5>
+<ol>
+  <li><strong>Open the Terminal.</strong></li>
+  <li>
+    <p><strong>Run the following command</strong>, replacing with your own zID.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">ssh-copy-id z5555555@cse.unsw.edu.au</code></p>
+  </li>
+  <li><strong>Enter your password.</strong> You’ll be asked for your CSE password one last time, for the key to be copied over.</li>
+</ol>
+
+<p>Voila! You had it a bit easier here.</p>
+
+<h4 id="part-3-telling-vs-code-on-your-computer-to-use-your-new-keys">Part 3: Telling VS Code on your computer to use your new keys</h4>
+
+<ol>
+  <li><strong>On your local machine, open the SSH menu in VS Code.</strong> Click the SSH icon in the bottom left, then <strong>Open Configuration File</strong>, and select the first option. You should see something like this:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host vscode.cse.unsw.edu.au
+    HostName vscode.cse.unsw.edu.au
+    User z5555555
+
+Host vscode2.cse.unsw.edu.au
+    HostName vscode2.cse.unsw.edu.au
+    User z5555555
+</code></pre></div></div>
+
+<ol>
+  <li><strong>We need to tell the SSH connection to use our private key.</strong> Add the following line to your config file, after each of the lines with ‘User’ on it. Make sure to indent it so that it’s in line with the others.
+    <ul>
+      <li>
+        <p><strong>Windows:</strong> Make sure to enter your username. If you don’t know it, it’s the part after <code class="language-plaintext highlighter-rouge">C:/Users/</code> when you open <code class="language-plaintext highlighter-rouge">cmd</code>.</p>
+
+        <p><code class="language-plaintext highlighter-rouge">IdentityFile "C:/Users/[YOURUSERNAME]/.ssh/id_rsa"</code></p>
+      </li>
+      <li>
+        <p><strong>Linux/macOS</strong></p>
+
+        <p><code class="language-plaintext highlighter-rouge">IdentityFile ~/.ssh/id_rsa</code></p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>A potential completed config might look like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host vscode.cse.unsw.edu.au
+    HostName vscode.cse.unsw.edu.au
+    User z5555555
+    IdentityFile "C:/Users/Bob/.ssh/id_rsa
+
+Host vscode2.cse.unsw.edu.au
+    HostName vscode2.cse.unsw.edu.au
+    User z5555555
+    IdentityFile "C:/Users/Bob/.ssh/id_rsa
+</code></pre></div></div>
+
+<p>Once you’ve done this, you should be able to open Remote-SSH in VS Code without requiring a password.</p>
+
+<p>If you need to add another public key to authorized_keys (for another computer), you can enter it on a new line.</p>
+
+<h2 id="coding-on-your-own-computer">Coding on your own computer</h2>
+
+<p>This guide was once part of a much larger guide which involved setting up to allow you to code on your own computer. However, this was much more than what most 1511 students need. It’s worth noting that you need to have an internet connection for SSH to work. If your train route has poor reception, and you want to code on the train, you would need an alternative.</p>
+
+<p>Even then, I would still recommend setting up your own local coding setup at some point. If you’re new to coding and you’re doing 1511 right now, I wouldn’t say you should worry about this. However, if you do intend on going on to study more CSE courses, I recommend that you come back over the break after term ends and <a href="/wsl-github">check out this other post I wrote</a>, which goes through setting up a Linux development environment if you have a Windows 10 computer, and using Git and GitHub to keep copies of your work on different computers and the internet.</p>
+
+<h2 id="troubleshooting-ssh-over-vs-code">Troubleshooting SSH over VS Code</h2>
+<p>If you’re having trouble connecting to VS Code, a fix that tends to work is</p>
+
+<ol>
+  <li><strong>Log in to the CSE servers using TigerVNC.</strong></li>
+  <li><strong>Open a terminal.</strong></li>
+  <li><strong>Run the following command:</strong> <code class="language-plaintext highlighter-rouge">rm -r ~/.vscode-server</code>. Make sure to copy and paste this command carefully.</li>
+</ol>
+
+<p>Alternatively, if you know how to open a Command Prompt/Terminal, you can run <code class="language-plaintext highlighter-rouge">ssh -t z5555555@cse.unsw.edu.au "rm -r ~/.vscode-server"</code>, replacing with your own zID.</p>
+
+<p>If this doesn’t work, try some of the solutions <a href="https://stackoverflow.com/questions/59978826/why-ssh-connection-timed-out-in-VS Code" target="_blank">here</a>.</p>
+
+<h2 id="have-feedback-or-want-to-reach-out">Have feedback, or want to reach out?</h2>
+<p>If you’ve spotted an error, or have any suggestions or improvements that I can make, feel free to contact me! My details are at the bottom of this page.</p>
+
+<h2 id="official-guide">Official guide</h2>
+
+<p>Despite myself and the people being acknowledged below currently being employed by the School of CSE, this blogpost doesn’t necessarily represent the views of my employer.</p>
+
+<p>As of late October 2020, CSE now has an official guide available for using VS Code to connect over SSH. While the steps you’ve just followed cover all of what’s in the guide (and more!), and is up-to-date as of the time of writing, you can find the official guide <a href="https://www.cse.unsw.edu.au/~learn/homecomputing/vscode/" target="_blank">here</a>.</p>
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+
+<p>Thanks to the following people who’ve looked over this guide and provided feedback!</p>
+
+<ul>
+  <li><a href="https://github.com/ralismark" target="_blank">ralismark</a></li>
+  <li><a href="https://github.com/adaluong" target="_blank">adaluong</a></li>
+  <li><a href="https://github.com/lukefisklennon" target="_blank">lukefisklennon</a></li>
+  <li><a href="https://github.com/tfpk" target="_blank">tfpk</a></li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>This actually represents an extremely large number, which is used to form a mathematical lock. This is called RSA encryption and you can learn more about it in MATH3411. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>Technically multiple commands, which I’ve condensed down for you. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    <script src="https://utteranc.es/client.js" repo="abiramen/site-utterances" issue-term="pathname" label="utteranc.es" theme="preferred-color-scheme" crossorigin="anonymous" async>
+    </script>
+</div>
+
+<script src="/assets/vendor/littlefoot/littlefoot.js"></script>
+
+    
+    <footer>
+    <div id = "footer-content">
+        <div id="contact">
+            <a href = "https://github.com/abiramen" target="_blank">GitHub: @abiramen</a><br>
+            <a href = "https://twitter.com/abiramen" target="_blank">Twitter: @abiramen</a><br>
+            println!("Email: {}@{}", "hi", "abiram.me");<br>
+            println!("Discord: {}#{}", "abiramen", 2452);
+        </div>
+        <div class="centre" id="love-and-ramen">Made with <span class="icon">favorite</span> and ramen by Abiram</div>
+        <img src="/assets/images/ramen-logo.png" id = "ramen-footer" width = "100px" alt="logo">
+        <div id="footer-flavour">You're at the bottom of this page. Or are you?</div>
+    </div>
+</footer>
+
+    <script src="/assets/js/common.js"></script>
+
+    
+    <script src="/assets/js/navbar.js"></script>
+    <script type="application/javascript">
+        littlefoot.default();
+    </script>
+    
+    <!-- Google Analytics scripts added by the NSA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128951835-2"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-128951835-2');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+        crossorigin="anonymous"></script>
+            
+  </body>
+</html>
