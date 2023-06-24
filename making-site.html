@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Making this site | abiram.me</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link type="application/atom+xml" rel="alternate" href="/feed.xml">
+    <link rel="shortcut icon" href="/assets/images/ramen-bricks.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet">
+    <meta name="theme-color" content="#000000"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Making this site | the ramen space</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Making this site" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hi! If you’re here, that means I’ve finally got around to fully completing my website! I purchased this domain 10 months ago, mostly neglected it for 9 of those months, or was super indecisive about how I wanted to approach it, and then finally got around to working on it." />
+<meta property="og:description" content="Hi! If you’re here, that means I’ve finally got around to fully completing my website! I purchased this domain 10 months ago, mostly neglected it for 9 of those months, or was super indecisive about how I wanted to approach it, and then finally got around to working on it." />
+<meta property="og:site_name" content="the ramen space" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-19T00:00:00+00:00" />
+<script type="application/ld+json">
+{"headline":"Making this site","dateModified":"2020-09-19T00:00:00+00:00","datePublished":"2020-09-19T00:00:00+00:00","description":"Hi! If you’re here, that means I’ve finally got around to fully completing my website! I purchased this domain 10 months ago, mostly neglected it for 9 of those months, or was super indecisive about how I wanted to approach it, and then finally got around to working on it.","url":"/making-site","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/ramen-bricks.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"/making-site"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    
+    <nav id = "navbar">
+    <div id="nav-contain">
+        <a href="/" id="navbar-logo">
+            <img src="/assets/images/ramen-logo.png" alt="neon-logo" id="logo"/>
+        </a>
+        <div id="nav-home">
+            <a href="/" id="navbar-name">@abiramen</a>
+        </div>
+
+        <div id="nav-right">
+            <a href="/projects">Projects</a>
+            <a href="/posts">Posts</a>
+        </div>
+
+        <img src="/assets/images/hamburger.svg" alt="hamburger" id="hamburger"/>
+        <div id="nav-border"></div>
+    </div>
+</nav>
+
+<div id="overlay">
+    <span id="overlay-close">&times;</span>
+    <div id="overlay-content">
+        <a href="/"><img src="/assets/images/ramen-logo.png" alt="neon-logo" id="overlay-logo"/></a>
+        <h3>@abiramen</h3>
+        <a href="/projects">Projects</a>
+        <a href="/posts">Posts</a>
+    </div>
+</div>
+
+    
+    <link rel="stylesheet" href="/assets/css/post.css" />
+<link rel="stylesheet" href="/assets/css/tags.css" />
+<link rel="stylesheet" href="/assets/vendor/littlefoot/littlefoot.css" />
+
+<div id="post-splash" class="splash">
+    <div class="container">
+        <div id="splash-text" class="post-desc">
+            <div id="post-head">
+                <span id="post-date">19 September 2020  (Updated 24 January 2021) </span>  ·
+                <div class="icon">schedule</div> 3 min read 
+            </div>
+            <div id="post-title">Making this site</div>
+            <div id="post-time"></div>
+            <div id="post-desc">I had a lot of fun making this website! I'm going to step through some of the decisions I made in the process.</div>
+            <div id="post-tags">
+                Tags:  
+                <a class="tag-link" href=/tags/meta rel="category tag">
+                    <span class="post-tag">meta</span>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    <a id="scroll-arrow" class="page-anchor-offset post-arrow" href="#post-contents">
+        <div class="icon">keyboard_arrow_down</div>
+    </a>
+
+</div>
+
+<div id="post-contents" class="container">
+    <p>Hi! If you’re here, that means I’ve finally got around to fully completing my website! I purchased this domain 10
+months ago, mostly neglected it for 9 of those months, or was super indecisive about how I wanted to approach it, and
+then finally got around to working on it.</p>
+
+<h2 id="planning">Planning</h2>
+<p>I knew the main feature I wanted to implement was a blog, and that I also wanted some place for a portfolio, while having a relatively unique design compared to most blogs. With this in mind, I quickly threw something together in Adobe Illustrator.</p>
+<h2 id="making-a-logo">Making a logo</h2>
+<p>I’ve had an idea in my mind to have some kind of ramen logo out of neon lights. After creating a wireframe in Illustrator, and a few Photoshop tutorials on neon glow effects later, I’ve got a new logo to use everywhere! :)</p>
+<h2 id="a-tech-stack">A tech stack</h2>
+<p>This was probably the part that held me off from working on this for the longest. For a long time, I was convinced that I would build my site using Vue.js, with the Vuetify component library, due to my prior experience with Vue. I also contemplated throwing in Nuxt in order to be able to server-side render some things. At some point, I realised that this was all extremely overkill, and would require actively running a server, which had many of its own costs.</p>
+<h3 id="github-pages-and-dr-jekyll">GitHub Pages, and Dr Jekyll</h3>
+<p>Once I realised that a static site would better suit my needs, I knew that I would use GitHub Pages for hosting. A friend of mine, ralismark, had mentioned how great Jekyll was, using it for <a href="https://www.ralismark.xyz" target="_blank">their own site</a>. I had known that Jekyll was a thing for a while, ever since I created my first GitHub Pages site in 2014, but had always ignored it, naively thinking that pure HTML/CSS was the way to go at the time.</p>
+
+<p>After building this site with Jekyll, I have to say it’s an absolute delight to work with. GitHub automatically builds a Jekyll site on push, and deploys it. Jekyll provides amazing templating support, reducing redundancy.Another fantastic feature is built-in support for writing pages and posts in Markdown (this is my first post in Markdown!! Hello world!!), for insertion into templates. While there are many Markdown-to-HTML converters out there, Jekyll just makes it seamless.</p>
+
+<p>If I ever require a page with server-side rendering, I can always host that on a separate domain. ralismark still says that Jekyll is great, although she does wish that he could server-side render LaTeX so that she doesn’t need to do that on the client’s device.</p>
+<h3 id="frontend-frameworks">Frontend frameworks</h3>
+<p><del>Admittedly as a result of me still being stuck in my old ways (or just being lazy), this site still uses jQuery in few places. I intend on porting it all to vanilla JavaScript at some point.</del> This site is now free of jQuery!  I also made the mistake of deciding to use Bootstrap when I started writing this site - mainly for layout (responsive containers), but you can probably see, this site looks relatively un-Bootstrapish. I also intend on removing Bootstrap at some point, since most of the layout stuff shouldn’t be too hard to reimplement myself.</p>
+<h2 id="fun-stuff">Fun stuff</h2>
+<p>One of <a href="https://mango.pdf.zone" target="_blank">my favourite blogs</a>, by the legendary <a href="https://twitter.com/mangopdf">@mangopdf</a>, has a couple of easter eggs baked into it. I decided to take some inspiration and add some fun stuff too! At the moment, there’s only one easter egg, which you’ll have to head to the homepage to learn about, but there’s definitely more coming soon!</p>
+
+<p>I also eventually realised that mangopdf’s blog uses Jekyll too, so I knew that I had made a good choice. 😎</p>
+
+<h2 id="the-future">The future</h2>
+<p>Well, I have quite a few posts planned, so watch this space I guess! 🙃</p>
+
+    <script src="https://utteranc.es/client.js" repo="abiramen/site-utterances" issue-term="pathname" label="utteranc.es" theme="preferred-color-scheme" crossorigin="anonymous" async>
+    </script>
+</div>
+
+<script src="/assets/vendor/littlefoot/littlefoot.js"></script>
+
+    
+    <footer>
+    <div id = "footer-content">
+        <div id="contact">
+            <a href = "https://github.com/abiramen" target="_blank">GitHub: @abiramen</a><br>
+            <a href = "https://twitter.com/abiramen" target="_blank">Twitter: @abiramen</a><br>
+            println!("Email: {}@{}", "hi", "abiram.me");<br>
+            println!("Discord: {}#{}", "abiramen", 2452);
+        </div>
+        <div class="centre" id="love-and-ramen" style="margin-bottom: 0.5rem">Made with <span class="icon">favorite</span> and ramen by Abiram</div>
+        <img src="/assets/images/ramen-logo.png" id = "ramen-footer" width = "75px" alt="logo">
+        <div id="footer-flavour">You're at the bottom of this page. Or are you?</div>
+    </div>
+</footer>
+
+
+    <script src="/assets/js/common.js"></script>
+    
+    
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/jquery-min-3.4.2.js"></script>
+    <script type="application/javascript">
+      littlefoot.default();
+    </script>
+    
+    <!-- Google Analytics scripts added by the NSA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128951835-2"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-128951835-2');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+        crossorigin="anonymous"></script>
+            
+  </body>
+</html>

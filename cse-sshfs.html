@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CSE and SSHFS | abiram.me</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link type="application/atom+xml" rel="alternate" href="/feed.xml">
+    <link rel="shortcut icon" href="/assets/images/ramen-bricks.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet">
+    <meta name="theme-color" content="#000000"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>CSE and SSHFS | the ramen space</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="CSE and SSHFS" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="If you’re a VS Code user who is in first year, or isn’t too used to coding locally, you might be better off checking the easier method of using SSHFS with VS Code here." />
+<meta property="og:description" content="If you’re a VS Code user who is in first year, or isn’t too used to coding locally, you might be better off checking the easier method of using SSHFS with VS Code here." />
+<meta property="og:site_name" content="the ramen space" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-12T00:00:00+00:00" />
+<script type="application/ld+json">
+{"headline":"CSE and SSHFS","dateModified":"2021-08-12T00:00:00+00:00","datePublished":"2021-08-12T00:00:00+00:00","description":"If you’re a VS Code user who is in first year, or isn’t too used to coding locally, you might be better off checking the easier method of using SSHFS with VS Code here.","url":"/cse-sshfs","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/ramen-bricks.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"/cse-sshfs"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    
+    <nav id = "navbar">
+    <div id="nav-contain">
+        <a href="/" id="navbar-logo">
+            <img src="/assets/images/ramen-logo.png" alt="neon-logo" id="logo"/>
+        </a>
+        <div id="nav-home">
+            <a href="/" id="navbar-name">@abiramen</a>
+        </div>
+
+        <div id="nav-right">
+            <a href="/projects">Projects</a>
+            <a href="/posts">Posts</a>
+        </div>
+
+        <img src="/assets/images/hamburger.svg" alt="hamburger" id="hamburger"/>
+        <div id="nav-border"></div>
+    </div>
+</nav>
+
+<div id="overlay">
+    <span id="overlay-close">&times;</span>
+    <div id="overlay-content">
+        <a href="/"><img src="/assets/images/ramen-logo.png" alt="neon-logo" id="overlay-logo"/></a>
+        <h3>@abiramen</h3>
+        <a href="/projects">Projects</a>
+        <a href="/posts">Posts</a>
+    </div>
+</div>
+
+    
+    <link rel="stylesheet" href="/assets/css/post.css" />
+<link rel="stylesheet" href="/assets/css/tags.css" />
+<link rel="stylesheet" href="/assets/vendor/littlefoot/littlefoot.css" />
+
+<div id="post-splash" class="splash">
+    <div class="container">
+        <div id="splash-text" class="post-desc">
+            <div id="post-head">
+                <span id="post-date">12 August 2021  (Updated 5 September 2021) </span> 
+            </div>
+            <div id="post-title">CSE and SSHFS</div>
+            <div id="post-time"></div>
+            <div id="post-desc">Stop killing CSE servers with this one simple trick!</div>
+            <div id="post-tags">
+                Tags:  
+                <a class="tag-link" href=/tags/unsw-cse rel="category tag">
+                    <span class="post-tag">unsw-cse</span>
+                </a>
+                 
+                <a class="tag-link" href=/tags/guide rel="category tag">
+                    <span class="post-tag">guide</span>
+                </a>
+                 
+                <a class="tag-link" href=/tags/ssh rel="category tag">
+                    <span class="post-tag">ssh</span>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    <a id="scroll-arrow" class="page-anchor-offset post-arrow" href="#post-contents">
+        <div class="icon">keyboard_arrow_down</div>
+    </a>
+
+</div>
+
+<div id="post-contents" class="container">
+    <p class="alert">If you’re a VS Code user who is in first year, or isn’t too used to coding locally, you might be better off checking the easier method of using SSHFS with VS Code <a href="/cse-setup">here</a>.</p>
+
+<p>Hello! About a year and a half ago, I wrote a blogpost about setting up Visual Studio Code to connect to CSE machines using the ‘Remote - SSH’ extension.</p>
+
+<p>In hindsight, this was a <strong>terrible mistake</strong> with consequences I could not have foreseen. It turns out that the extension spawns a nodejs server on the remote machine for each connection, which requires an <em>intense</em> amount of resources <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>.</p>
+
+<p>CSE also has a lot of students, meaning you are not going to be having a good day if your hostname is <em>corelli</em> or <em>mandolin</em> 📉📉<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>. I apologise for the terrible atrocities which I have inflicted upon the servers of the School of Computer Science and Engineering 🙏🥺.</p>
+
+<p>Anyhow, this guide steps through setting up SSHFS to mount and access your CSE filesystem from your local file system! Doing so allows you to access files on CSE machines as if they are on your own computer, and automatically synchronises any changes to files. This method likely uses less than a tenth of the resources required by the VS Code remote extension!</p>
+
+<h2 id="who-is-this-guide-for">Who is this guide for?</h2>
+
+<p>If you’ve reached the end of the first year of your CSE degree, you <strong>probably</strong> should have a local coding setup by now, whether that be:</p>
+<ul>
+  <li>a native Linux (or *nix) setup, or</li>
+  <li>some form of macOS setup, or</li>
+  <li>WSL 2 <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup></li>
+</ul>
+
+<p>In that case, I highly recommend using SSHFS if you find yourself needing to work with files directly on CSE machines. If you’re in first year and feeling adventurous, you can take a try at setting it up too, but you’re probably better off following <a href="/cse-setup">this guide</a>. <sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote">4</a></sup></p>
+
+<h2 id="getting-started-">Getting started 🎉</h2>
+
+<p><em><strong>obligatory disclaimer</strong>: despite being employed by cse at the time of writing, this does <strong>not</strong> reflect the views of my employer. you get it, don’t you?</em> 👌👌</p>
+
+<p>Now that that’s out of the way, we’ll need to install SSHFS to get started.</p>
+
+<h3 id="linux-and-wsl-2">Linux and WSL 2</h3>
+
+<p>I’m going to assume that you’re using an Ubuntu or Debian-based installation (this is most WSL distributions by default), in which case this should be nice and simple. If you’re not, you’re probably familiar enough with your distro’s package manager, or can grab the installer from GitHub <a href="https://github.com/libfuse/sshfs" target="_blank">here</a>.</p>
+
+<p>Otherwise, all you’ll need to do is <strong>open a terminal</strong> and run <code class="language-plaintext highlighter-rouge">sudo apt install -y openssh-client sshfs</code> on your own computer.</p>
+
+<h3 id="macos">macOS</h3>
+<ol>
+  <li><strong>Install Homebrew</strong> if you don’t have it already by following the instructions <a href="https://brew.sh" target="_blank">here</a>.</li>
+  <li><strong>Install MacFUSE</strong> Run <code class="language-plaintext highlighter-rouge">brew install --cask macfuse</code> in your terminal. Go to System Preferences → Security &amp; Privacy, enable the new system extension, then restart.</li>
+  <li><strong>Install sshfs</strong> Run <code class="language-plaintext highlighter-rouge">brew install gromgit/fuse/sshfs-mac</code> in your terminal and follow any steps which pop up.</li>
+</ol>
+
+<h2 id="mounting-your-cse-home-directory">Mounting your CSE home directory</h2>
+
+<p>Our goal is to be able to access our CSE files from our own computer. To do this, we’ll need to use SSHFS to <strong>mount</strong> them.</p>
+
+<ol>
+  <li><strong>If this is your first time, make a directory</strong> in your local home directory by running <code class="language-plaintext highlighter-rouge">mkdir ~/cse</code> from a terminal. If you want to use a different folder name, feel free to do so, but make sure to use it instead in any future commands. It’s important that this is an empty folder.</li>
+  <li><strong>Run the following command:</strong> <code class="language-plaintext highlighter-rouge">sshfs -o idmap=user -C z5555555@loginX.cse.unsw.edu.au: ~/cse</code>, replacing with your own zID, and replacing the X with the last digit of your zID. For example, if your zID was z5123456, you’d use <code class="language-plaintext highlighter-rouge">login6.cse.unsw.edu.au</code>.</li>
+</ol>
+
+<p>Yay! Your CSE files should now be accessible in the <code class="language-plaintext highlighter-rouge">~/cse</code> directory! You can now access them with the text editor of your choice! For example, if you’re a VS Code user, you can run <code class="language-plaintext highlighter-rouge">code ~/cse</code> to open a new workspace <sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">5</a></sup>.</p>
+
+<p><strong>Once you’re done working</strong>, you should unmount the CSE filesystem. To do this, run <code class="language-plaintext highlighter-rouge">fusermount -u ~/cse</code> on Linux, or <code class="language-plaintext highlighter-rouge">unmount -f ~/cse</code> on macOS<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote">6</a></sup>.</p>
+
+<p><img src="/assets/images/blog/cse-sshfs/sshfs-workflow.png" alt="Your SSHFS workflow, although you won't need to make a directory each time" /></p>
+
+<p>In order to get a shell on CSE machines and run commands such as <code class="language-plaintext highlighter-rouge">autotest</code> and <code class="language-plaintext highlighter-rouge">give</code>, you’ll need to run <code class="language-plaintext highlighter-rouge">ssh z5555555@loginX.cse.unsw.edu.au</code>, (again, with your own zID, and replacing X with the last digit of your zID) and type in ‘yes’ if any prompts appear. Use <kbd>Ctrl</kbd>+<kbd>D</kbd> to exit when you’re done.</p>
+
+<p><img src="/assets/images/blog/cse-sshfs/ssh-in.png" alt="Getting a shell" /></p>
+
+<h2 id="setting-up-ssh-keys">Setting up SSH keys</h2>
+
+<p>If you’re being prompted for your password whenever using SSHFS or SSH, setting up a pair of SSH keys (if you haven’t already) is probably a good idea. You can do this by following <strong>Part 4 and 5</strong> of the ‘SSH and SSH keys’ section <a href="https://www.abiram.me/cse-setup#bonus-coins-avoiding-the-need-to-type-your-password-each-time">here</a>.</p>
+
+<h2 id="aliases">Aliases</h2>
+<p>Typing in all these commands gets a bit cumbersome. We can use aliases to simplify this process a bit for us!</p>
+
+<h3 id="determining-your-shell">Determining your shell</h3>
+<p>Before we can figure out where to keep our aliases, we’ll need to figure out what shell we’re doing. In order to do this, run <code class="language-plaintext highlighter-rouge">echo $SHELL</code>.</p>
+
+<p>It’s likely that your shell is either bash or zsh (if not, you’re probably cluey enough to figure the rest out yourself). If you’re on bash, open or create the file <code class="language-plaintext highlighter-rouge">~/.bashrc</code>. If you’re on zsh, open or create <code class="language-plaintext highlighter-rouge">~/.zshrc</code> in the text editor of your choice (eg. <code class="language-plaintext highlighter-rouge">code ~/.zshrc</code>).</p>
+
+<h3 id="adding-our-aliases">Adding our aliases</h3>
+<p>Create a newline at the end of the file you just opened, and paste in the following, being sure to replace with your own zID (also make sure to <strong>not</strong> add a space after the equals sign):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Your zID (change this)</span>
+<span class="nv">_SSHFS_ZID</span><span class="o">=</span>z5555555
+<span class="c"># Your desired mountpoint for your CSE home directory</span>
+<span class="nv">_SSHFS_CSE_MOUNT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/cse"</span>
+
+<span class="nb">alias </span><span class="nv">csemnt</span><span class="o">=</span><span class="s2">"sshfs -o idmap=user -C </span><span class="k">${</span><span class="nv">_SSHFS_ZID</span><span class="k">}</span><span class="s2">@login</span><span class="k">${</span><span class="nv">_SSHFS_ZID</span>:<span class="p"> -1</span><span class="k">}</span><span class="s2">.cse.unsw.edu.au: </span><span class="k">${</span><span class="nv">_SSHFS_CSE_MOUNT</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">alias </span><span class="nv">cseumount</span><span class="o">=</span><span class="s2">"fusermount -zu </span><span class="k">${</span><span class="nv">_SSHFS_CSE_MOUNT</span><span class="k">}</span><span class="s2">"</span>
+
+<span class="k">function </span>cse<span class="o">()</span> <span class="o">{</span>
+    <span class="c"># determine where we are relative to the mountpoint (thanks @ralismark)</span>
+    <span class="nb">local </span><span class="nv">rel</span><span class="o">=</span><span class="k">${</span><span class="nv">PWD</span><span class="p">##</span><span class="k">${</span><span class="nv">_SSHFS_CSE_MOUNT</span><span class="k">}}</span>
+
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="c"># if we don't have arguments, we give the user a shell on the remote cse machine.</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$PWD</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"</span><span class="nv">$rel</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="c"># in the case that we're not in our mountpoint, provide a shell in their home directory.</span>
+            ssh <span class="s2">"</span><span class="k">${</span><span class="nv">_SSHFS_ZID</span><span class="k">}</span><span class="s2">@login</span><span class="k">${</span><span class="nv">_SSHFS_ZID</span>:<span class="p"> -1</span><span class="k">}</span><span class="s2">.cse.unsw.edu.au"</span>
+        <span class="k">else</span>
+            <span class="c"># if within the mountpoint, cd to the equivalent dir on the remote before providing a shell (thanks @ralismark)</span>
+            ssh <span class="s2">"</span><span class="k">${</span><span class="nv">_SSHFS_ZID</span><span class="k">}</span><span class="s2">@login</span><span class="k">${</span><span class="nv">_SSHFS_ZID</span>:<span class="p"> -1</span><span class="k">}</span><span class="s2">.cse.unsw.edu.au"</span> <span class="nt">-t</span> <span class="s2">"cd </span><span class="si">$(</span><span class="nb">printf</span> <span class="s2">"%q"</span> <span class="s2">"./</span><span class="nv">$rel</span><span class="s2">"</span><span class="si">)</span><span class="s2">; exec </span><span class="se">\$</span><span class="s2">SHELL -l"</span>
+        <span class="k">fi
+    else</span>
+        <span class="c"># if we have arguments, we have a command to execute.</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$PWD</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"</span><span class="nv">$rel</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="c"># in the case that we're not in our mountpoint, we'll execute in the home directory.</span>
+            ssh <span class="nt">-qt</span> <span class="s2">"</span><span class="k">${</span><span class="nv">_SSHFS_ZID</span><span class="k">}</span><span class="s2">@login</span><span class="k">${</span><span class="nv">_SSHFS_ZID</span>:<span class="p"> -1</span><span class="k">}</span><span class="s2">.cse.unsw.edu.au"</span> <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+        <span class="k">else</span>
+            <span class="c"># if within the mountpoint, cd to the equivalent dir on the remote before executing (thanks @ralismark)</span>
+            ssh <span class="s2">"</span><span class="k">${</span><span class="nv">_SSHFS_ZID</span><span class="k">}</span><span class="s2">@login</span><span class="k">${</span><span class="nv">_SSHFS_ZID</span>:<span class="p"> -1</span><span class="k">}</span><span class="s2">.cse.unsw.edu.au"</span> <span class="nt">-qt</span> <span class="s2">"cd </span><span class="si">$(</span><span class="nb">printf</span> <span class="s2">"%q"</span> <span class="s2">"./</span><span class="nv">$rel</span><span class="s2">"</span><span class="si">)</span><span class="s2"> &amp;&amp; </span><span class="si">$(</span><span class="nb">printf</span> <span class="s2">"%q "</span> <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span>
+        <span class="k">fi
+    fi</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>You should now be able to open a new terminal (or run <code class="language-plaintext highlighter-rouge">exec bash</code> or <code class="language-plaintext highlighter-rouge">exec zsh</code> depending on which shell you use) and be able to enter <code class="language-plaintext highlighter-rouge">csemnt</code> to mount your CSE filesystem, and <code class="language-plaintext highlighter-rouge">cseumount</code> to unmount. You can also use <code class="language-plaintext highlighter-rouge">cse</code> to get a shell on CSE machines, and even directly run a single command by using <code class="language-plaintext highlighter-rouge">cse 1521 spim -f factorial.s</code> for example. It’s worth noting that Git operations are particularly slow through SSH FS, so it’s better to get a shell using <code class="language-plaintext highlighter-rouge">cse</code> and perform all your Git operations there.</p>
+
+<p><img src="/assets/images/blog/cse-sshfs/alias.png" alt="Using aliases yeet" /></p>
+
+<p>If this doesn’t work, and you’re on bash, make sure to check the relevant part of the troubleshooting section below.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h4 id="mountpoint-not-empty">mountpoint not empty</h4>
+<p>This suggests that you’re trying to mount to the <code class="language-plaintext highlighter-rouge">~/cse</code> directory, despite it currently containing files in it, or perhaps being already mounted. If it’s the former, remove these files or move them somewhere else if you need them.</p>
+<h4 id="codeexe-invalid-argument">Code.exe: Invalid argument</h4>
+<p>There’s a weird WSL bug where the <code class="language-plaintext highlighter-rouge">code</code> command may not work if you’re in the <code class="language-plaintext highlighter-rouge">~/cse</code> directory, so you may need to run it from outside - that is, try <code class="language-plaintext highlighter-rouge">cd ~ &amp;&amp; code ~/cse/path/to/file-or-directory</code>.</p>
+<h4 id="aliases-in-bashrc-dont-work">Aliases in <code class="language-plaintext highlighter-rouge">.bashrc</code> don’t work</h4>
+<p>There’s a chance that your terminal isn’t set up to automatically source <code class="language-plaintext highlighter-rouge">.bashrc</code>. To fix this, open <code class="language-plaintext highlighter-rouge">~/.profile</code>, add a newline to the end of the file and paste the following in:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$BASH_VERSION</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.bashrc"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">source</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.bashrc"</span>
+    <span class="k">fi
+fi</span>
+</code></pre></div></div>
+
+<h2 id="have-feedback-or-want-to-reach-out">Have feedback, or want to reach out?</h2>
+<p>If you’ve spotted an error, or have any suggestions or improvements that I can make, feel free to contact me! You can find details at the bottom of this page.</p>
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>While I’ve vaguely known SSHFS has existed for a bit, I never thought to use it until Nicholas Berridge-Argent published a guide to using SSHFS with CSE <a href="https://nickba.dev/misc/cse-sshfs.html">here</a>. I’ve been using SSHFS ever since, although the only times I really use CSE machines is if I need to demo something on SPIM. This guide merely expands on Nick’s guide, and a massive shoutout goes to him here!</p>
+
+<p>Thanks to <a href="https://github.com/ralismark">@ralismark</a> for their useful feedback (such as pointing out lazy unmounting exists), and for their scripts to easily run commands and get a shell on the remote machine.</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>This gets worse as you add more extensions. We once spotted someone using a Java language extension eating up nearly a gigabyte of RAM on its own. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://twitter.com/jashankj/status/1384742308591988736" target="_blank">Others have considered</a> reverse engineering the extension to figure out why it was so unnecessarily resource intensive, only to realise doing so could potentially be a crime. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>There are definitely ways to get SSHFS working natively on Windows, but they’re a lot messier, and setting up WSL is definitely advisable. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:6" role="doc-endnote">
+      <p>I personally much prefer this setup over both the VS Code Remote-SSH and SSHFS extensions just because it seamlessly interfaces with WSL, which is my regular coding setup. <a href="#fnref:6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>Make sure to have the ‘Remote - WSL’ extension installed in VS Code. There’s also a weird WSL bug where the <code class="language-plaintext highlighter-rouge">code</code> command may not work if you’re in the <code class="language-plaintext highlighter-rouge">~/cse</code> directory, so you may need to run it from outside. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:5" role="doc-endnote">
+      <p>It’s not the worst thing in the world if you forget/are unable to unmount, but you’ll be using up some resources both on your own computer as well as CSE computers. <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    <script src="https://utteranc.es/client.js" repo="abiramen/site-utterances" issue-term="pathname" label="utteranc.es" theme="preferred-color-scheme" crossorigin="anonymous" async>
+    </script>
+</div>
+
+<script src="/assets/vendor/littlefoot/littlefoot.js"></script>
+
+    
+    <footer>
+    <div id = "footer-content">
+        <div id="contact">
+            <a href = "https://github.com/abiramen" target="_blank">GitHub: @abiramen</a><br>
+            <a href = "https://twitter.com/abiramen" target="_blank">Twitter: @abiramen</a><br>
+            println!("Email: {}@{}", "hi", "abiram.me");<br>
+            println!("Discord: {}#{}", "abiramen", 2452);
+        </div>
+        <div class="centre" id="love-and-ramen" style="margin-bottom: 0.5rem">Made with <span class="icon">favorite</span> and ramen by Abiram</div>
+        <img src="/assets/images/ramen-logo.png" id = "ramen-footer" width = "75px" alt="logo">
+        <div id="footer-flavour">You're at the bottom of this page. Or are you?</div>
+    </div>
+</footer>
+
+
+    <script src="/assets/js/common.js"></script>
+    
+    
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/jquery-min-3.4.2.js"></script>
+    <script type="application/javascript">
+      littlefoot.default();
+    </script>
+    
+    <!-- Google Analytics scripts added by the NSA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128951835-2"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-128951835-2');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+        crossorigin="anonymous"></script>
+            
+  </body>
+</html>

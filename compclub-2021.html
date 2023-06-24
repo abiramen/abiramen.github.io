@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CompClub CTF 2021 | abiram.me</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link type="application/atom+xml" rel="alternate" href="/feed.xml">
+    <link rel="shortcut icon" href="/assets/images/ramen-bricks.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet">
+    <meta name="theme-color" content="#000000"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>CompClub CTF 2021 | the ramen space</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="CompClub CTF 2021" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I’ve been looking for the opportunity to do some form of high school outreach program for a while, so when CSESoc’s (my uni’s constituent society for computer science related degrees) CompClub decided to take applications for workshop developers, and saw the option for a security workshop, I knew I had to sign up. The following CTF was the result of my work with the help of a few fellow fantastic volunteers." />
+<meta property="og:description" content="I’ve been looking for the opportunity to do some form of high school outreach program for a while, so when CSESoc’s (my uni’s constituent society for computer science related degrees) CompClub decided to take applications for workshop developers, and saw the option for a security workshop, I knew I had to sign up. The following CTF was the result of my work with the help of a few fellow fantastic volunteers." />
+<meta property="og:site_name" content="the ramen space" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-15T00:00:00+00:00" />
+<script type="application/ld+json">
+{"headline":"CompClub CTF 2021","dateModified":"2021-01-15T00:00:00+00:00","datePublished":"2021-01-15T00:00:00+00:00","description":"I’ve been looking for the opportunity to do some form of high school outreach program for a while, so when CSESoc’s (my uni’s constituent society for computer science related degrees) CompClub decided to take applications for workshop developers, and saw the option for a security workshop, I knew I had to sign up. The following CTF was the result of my work with the help of a few fellow fantastic volunteers.","url":"/compclub-2021","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/ramen-bricks.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"/compclub-2021"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    
+    <nav id = "navbar">
+    <div id="nav-contain">
+        <a href="/" id="navbar-logo">
+            <img src="/assets/images/ramen-logo.png" alt="neon-logo" id="logo"/>
+        </a>
+        <div id="nav-home">
+            <a href="/" id="navbar-name">@abiramen</a>
+        </div>
+
+        <div id="nav-right">
+            <a href="/projects">Projects</a>
+            <a href="/posts">Posts</a>
+        </div>
+
+        <img src="/assets/images/hamburger.svg" alt="hamburger" id="hamburger"/>
+        <div id="nav-border"></div>
+    </div>
+</nav>
+
+<div id="overlay">
+    <span id="overlay-close">&times;</span>
+    <div id="overlay-content">
+        <a href="/"><img src="/assets/images/ramen-logo.png" alt="neon-logo" id="overlay-logo"/></a>
+        <h3>@abiramen</h3>
+        <a href="/projects">Projects</a>
+        <a href="/posts">Posts</a>
+    </div>
+</div>
+
+    
+    <link rel="stylesheet" href="/assets/css/post.css" />
+<link rel="stylesheet" href="/assets/css/tags.css" />
+<link rel="stylesheet" href="/assets/vendor/littlefoot/littlefoot.css" />
+
+<div id="post-splash" class="splash">
+    <div class="container">
+        <div id="splash-text" class="post-desc">
+            <div id="post-head">
+                <span id="post-date">15 January 2021  (Updated 31 January 2021) </span>  ·
+                <div class="icon">schedule</div> 18 min read 
+            </div>
+            <div id="post-title">CompClub CTF 2021</div>
+            <div id="post-time"></div>
+            <div id="post-desc">I had the exciting opportunity to volunteer to help run a security workshop and write an accompanying CTF for high school students!</div>
+            <div id="post-tags">
+                Tags:  
+                <a class="tag-link" href=/tags/security rel="category tag">
+                    <span class="post-tag">security</span>
+                </a>
+                 
+                <a class="tag-link" href=/tags/ctf rel="category tag">
+                    <span class="post-tag">ctf</span>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    <a id="scroll-arrow" class="page-anchor-offset post-arrow" href="#post-contents">
+        <div class="icon">keyboard_arrow_down</div>
+    </a>
+
+</div>
+
+<div id="post-contents" class="container">
+    <p>I’ve been looking for the opportunity to do some form of high school outreach program for a while, so when CSESoc’s (my uni’s constituent society for computer science related degrees) CompClub decided to take applications for workshop developers, and saw the option for a security workshop, I knew I had to sign up. The following CTF was the result of my work with the help of a few fellow fantastic volunteers.</p>
+
+<h3 id="la-table-des-matières">La table des matières</h3>
+<ul>
+  <li><a href="#behind-the-scenes" class="page-anchor-offset">Behind the scenes</a></li>
+  <li><a href="#challenge-constraints" class="page-anchor-offset">Challenge constraints</a></li>
+  <li><a href="#challenges-and-solutions" class="page-anchor-offset">Challenges and solutions!</a>
+    <ul>
+      <li>Crypto
+        <ul>
+          <li><a href="#a-strange-shift-30-points" class="page-anchor-offset">A strange shift</a></li>
+          <li><a href="#compclub-30-points" class="page-anchor-offset">compclub</a></li>
+          <li><a href="#shooting-stars-35-points" class="page-anchor-offset">Shooting Stars</a></li>
+          <li><a href="#an-actual-flag-50-points" class="page-anchor-offset">An actual flag</a></li>
+        </ul>
+      </li>
+      <li>OSINT
+        <ul>
+          <li><a href="#firednd-0-25-points" class="page-anchor-offset">firednd-0</a></li>
+          <li><a href="#firednd-1-30-points" class="page-anchor-offset">firednd-1</a></li>
+          <li><a href="#firednd-2-30-points" class="page-anchor-offset">firednd-2</a></li>
+        </ul>
+      </li>
+      <li>Web
+        <ul>
+          <li><a href="#simplelogin-30-points-each" class="page-anchor-offset">simple-login</a></li>
+        </ul>
+      </li>
+      <li>Forensics
+        <ul>
+          <li><a href="#spotify-20-points" class="page-anchor-offset">Spotify</a></li>
+          <li><a href="#blank-space-30-points" class="page-anchor-offset">Blank Space</a></li>
+          <li><a href="#egg-nog-50-points" class="page-anchor-offset">Egg nog</a></li>
+        </ul>
+      </li>
+      <li>Miscellaneous
+        <ul>
+          <li><a href="#slides-10-points" class="page-anchor-offset">Slides</a></li>
+          <li><a href="#what-was-that-25-points" class="page-anchor-offset">What was that?</a></li>
+          <li><a href="#starlang-30-points" class="page-anchor-offset">starlang</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#conclusion" class="page-anchor-offset">Conclusion</a></li>
+</ul>
+
+<h1 id="behind-the-scenes">Behind the scenes</h1>
+<p>While I’ve had the opportunity to write CTF challenges for <a href="https://unswsecurity.com" target="_blank">UNSW Security Society</a> over the past year, and hope to write plenty more this year, this was the first time when I’ve been responsible for getting the CTF infrastructure up and running, and deploying challenges.</p>
+
+<p>If you’re interested in how I did this, particularly if you’re a CompClub workshop developer from the future and trying to figure out how to run a CTF, the README I wrote up in <a href="https://github.com/abiramen/2021-compclub-summer-ctf" target="_blank">this repo</a> should help you out.</p>
+
+<p>The source code for all the challenges, as well as their writeups can be found there too!</p>
+
+<h1 id="constraints">Constraints</h1>
+<p>The CTFs I’ve written for in the past have ran for at least 4 hours, and at most 2 days. Writing a CTF with essentially a 2 hour time constraint was one of my main challenges. Another was catering to a variety of experience levels while remaining within the time limit. I also had to avoid OSINT challenges which involved trawling social media, since I couldn’t make the assumption that all students had access to social media.</p>
+
+<h1 id="challenges-and-solutions">Challenges and solutions</h1>
+<p>Here are all the challenges! The solutions are hidden until you click on them, so that you can try challenges without spoilers.</p>
+
+<h2 id="crypto">Crypto</h2>
+<h3 id="a-strange-shift-30-points">A strange shift (30 points)</h3>
+
+<p>Worked two different shifts in one day at Maccas, and I’m too tired to decode this. This dude kept ordering a Chicken Caesar Salad, and uttering this strange code. Can you decode it for me?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SQNL{sby_n_ibucqrw_xunsy}
+</code></pre></div></div>
+
+<h4 id="solution">Solution</h4>
+
+<details>
+
+  <h5 id="walkthrough">Walkthrough</h5>
+  <p>The most obvious hint here is the reference to the Caesar cipher, further confirmed by the use of the word shift. However, we could try all 26 possibilities here, and none of them would result in a coherent FLAG.</p>
+
+  <p>The sneakier part that you may not have caught in the wording is the ‘double shift’ - two different Caesar shifts were used.</p>
+
+  <p>One thing we can note is that we can expect the message to start with FLAG. If we try to rig a shift so that we get the first letter to be F (+13), we get:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FDAY{fol_a_vohpdej_khafl}
+</code></pre></div>  </div>
+
+  <p>Interestingly, this also gets the A in the right place, giving us <code class="language-plaintext highlighter-rouge">F_A_</code>.</p>
+
+  <p>Shifting to get L in the second position (-5) gives us</p>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NLIG{nwt_i_dwpxlmr_spint}
+</code></pre></div>  </div>
+
+  <p>This time, we also get the G in the right place! This suggests that there are two alternating shifts.</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FDAY{fol_a_vohpdej_khafl}
+NLIG{nwt_i_dwpxlmr_spint}
+</code></pre></div>  </div>
+
+  <p>Taking alternating letters, we get our flag.</p>
+
+  <h5 id="flag">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{not_a_doppler_shift}</code></p>
+</details>
+
+<h3 id="compclub-30-points">compclub (30 points)</h3>
+
+<p>compclub</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>compclubcompcompcompclubclubcomp compclubcompcompclubclubcompcomp
+compclubcompcompcompcompcompclub compclubcompcompcompclubclubclub
+compclubclubclubclubcompclubclub compclubclubcompcompcompclubcomp
+compclubclubclubclubcompcompclub compclubcompclubcompclubcompcomp
+compcompclubclubcompcompclubclub compclubcompclubclubclubclubclub
+compclubclubclubcompcompclubclub compcompclubclubcompcompcompclub
+compclubclubclubclubcompclubcomp compclubcompcompcompclubcompclub
+compclubclubcompcompclubcompcomp compclubclubclubclubclubcompclub
+</code></pre></div></div>
+
+<h4 id="solution-1">Solution</h4>
+
+<details>
+
+  <h5 id="walkthrough-1">Walkthrough</h5>
+
+  <p>We seem to have the strings ‘comp’ and ‘club’ as base units here - this seems very much like a binary system!</p>
+
+  <p>There also seems to be exactly 8 comps or clubs in a group, or exactly a byte! This suggests that the FLAG could be encoded in ASCII.</p>
+
+  <p>We know that all ASCII characters represented as a binary byte start with 0. Since all the groups start with comp, we can guess that comp is 0, and club is 1.</p>
+
+  <p>Replacing, we get,</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>01001100 01000001 01000111 01111011 01100010 01111001 01010100 00110011 01011111 01110011 00110001 01111010 01000101 01100100 01111101
+</code></pre></div>  </div>
+
+  <p>Converting these into their ASCII characters, we get our flag.</p>
+
+  <h5 id="flag-1">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{byT3_s1zEd}</code></p>
+</details>
+
+<h3 id="shooting-stars-35-points">Shooting Stars (35 points)</h3>
+
+<p>found this cool book about shooting stars! i love shooting stars. the index fell out though.</p>
+
+<p>Remember to wrap your answer with <code class="language-plaintext highlighter-rouge">FLAG{}</code>!</p>
+
+<p><a href="https://github.com/abiramen/2021-compclub-summer-ctf/blob/main/crypto/shooting-stars/_ctfd/files/book.txt">book.txt</a>
+<a href="https://github.com/abiramen/2021-compclub-summer-ctf/blob/main/crypto/shooting-stars/_ctfd/files/index.txt">index.txt</a></p>
+
+<h4 id="solution-2">Solution</h4>
+<details>
+
+  <h5 id="walkthrough-2">Walkthrough</h5>
+  <p>The name of the file <code class="language-plaintext highlighter-rouge">index.txt</code> hints that the numbers in its contents could be some way that we could index the book, just like we index lists/arrays when programming.</p>
+
+  <p>We can see the numbers occur in pairs, <code class="language-plaintext highlighter-rouge">(a, b)</code>. The <code class="language-plaintext highlighter-rouge">a</code> values can get pretty big, while <code class="language-plaintext highlighter-rouge">b</code> is always relatively small (at most, 6). This suggests that the second number could be some way of indexing a character within a word. Maybe the first number could be the index of the word we’re using?</p>
+
+  <p>We can also see a couple of 0s occurring in the index, for example, the second pair is <code class="language-plaintext highlighter-rouge">(0, 0)</code>. This suggests that both words and characters are zero-indexed, just like lists and arrays in most programming languages start counting from 0.</p>
+
+  <p>This is what is known as a book cipher. You could either try manually calculating each of the letters, writing a script to do it, or using a website <a href="https://www.boxentriq.com/code-breaking/book-cipher">like this one</a> to decode it. You’ll need to convert all the index pairs to match the format on that site. Make sure you select the correct options (word number, character number, none), and set the numbering start to 0. Once you do this, you should get your flag.</p>
+
+  <h5 id="flag-2">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{lightpollution}</code></p>
+
+  <h5 id="other-notes">Other notes</h5>
+  <p>The contents of the book are actually the lyrics to Shooting Stars by Bag Raiders.</p>
+
+</details>
+
+<h3 id="an-actual-flag-50-points">An actual flag (50 points)</h3>
+
+<p>Was bored, decided to colonise a new planet. Wanted to incorporate the planet name in its flag design - can you find it?</p>
+
+<p>Remember to wrap your answer with <code class="language-plaintext highlighter-rouge">FLAG{}</code>!</p>
+
+<p><a href="https://github.com/abiramen/2021-compclub-summer-ctf/blob/main/crypto/an-actual-flag/_ctfd/files/anactualflag.png" target="_blank">anactualflag.png</a></p>
+
+<h4 id="solution-3">Solution</h4>
+
+<details>
+  <h5 id="walkthrough-3">Walkthrough</h5>
+
+  <p>Typically with an image challenge, I would go through</p>
+  <ul>
+    <li>Metadata (basically non-existent with PNG files)</li>
+    <li>Photoshop levels (and other adjustments)</li>
+    <li>Steganography</li>
+    <li>Hexdump (checking through the raw bytes in the file for any anomalies, but not typical in a beginner’s CTF of this level).</li>
+  </ul>
+
+  <p>It’s certainly worth checking through these if everything else fails, but this is a crypto challenge, not a forensics challenge. The wording of the challenge also suggests that the name being hidden in the flag is intrisic to the flag design itself, and not the file.</p>
+
+  <p>At this point, we can analyse the colours in the image - there are three of them:</p>
+
+  <ul>
+    <li>#486163</li>
+    <li>#6b746f</li>
+    <li>#706961</li>
+  </ul>
+
+  <p>It’s worth noting this image looks really dull. Breaking each of the colours into their subpixels (or bytes):</p>
+
+  <ul>
+    <li>48 61 63</li>
+    <li>6b 74 6f</li>
+    <li>70 69 61</li>
+  </ul>
+
+  <p>We can see that none of the bytes are greater than 7F, which is equal to 127 in decimal. This suggests that the colours may be being used to encode ASCII values.</p>
+
+  <p>If we convert each byte to their corresponding ASCII values (remember to use the hexadecimal column on the ASCII table), we get</p>
+
+  <ul>
+    <li>H a c</li>
+    <li>k t o</li>
+    <li>p i a</li>
+  </ul>
+
+  <p>revealing the flag.</p>
+
+  <h5 id="flag-3">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{Hacktopia}</code></p>
+
+</details>
+
+<h2 id="osint">OSINT</h2>
+<h3 id="firednd-0-25-points">firednd-0 (25 points)</h3>
+
+<p>Hello! CEO of FireDnD here! We’re a small startup that aims to connect people together for games of Dungeons and Dragons. You can check out our (incomplete - more on that later) website <a href="https://firednd-syd.web.app" target="_blank">here!</a></p>
+
+<p>If this website is down, <a href="https://github.com/abiramen/2021-compclub-summer-ctf/tree/main/osint/firednd-src" target="_blank">you can find the source code here.</a></p>
+
+<p>I’ve got a few tasks for you to complete, but before we start, could you do me a favour?</p>
+
+<p>I’m supposed to meet up with someone after work today. I finish at 5PM, and take 8 minutes to walk from my office to Platform 2 of the nearest<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> station. I then need to catch the next T4 train, before I get off at the second stop. Can you figure out what time I get off the train (rounded to the nearest minute)?</p>
+
+<p>Your answer should be a 24-hour time. For example, if your answer is 6:04PM, enter <code class="language-plaintext highlighter-rouge">FLAG{1804}</code>.</p>
+
+<h4 id="solution-4">Solution</h4>
+
+<details>
+  <h5 id="walkthrough-4">Walkthrough</h5>
+  <p>This requires some minor intelligence gathering:</p>
+  <ol>
+    <li>Note that FireDnD’s offices are located at 33-39 Hunter Street, Sydney. This can be found on the site’s footer, or ‘Contact Us’ page.</li>
+    <li>The nearest station can be found using the measure distance tool on Google Maps - this is Martin Place station - however, it only barely beats out Wynyard station.</li>
+    <li>We are told that the CEO wishes to take a T4 train from Platform 2 - if you chose Wynyard Station earlier, this is a big clue that something may have gone wrong, as <strong>no T4 trains pass through Wynyard</strong>. Avid train nerds may also note that Wynyard doesn’t have a Platform 2, as platforms there are numbered from 3. T4 trains on Platform 2 of Martin Place station run eastbound towards Bondi Junction. Two stops in this direction takes us to Edgecliff station.</li>
+    <li>We now want to check the train schedule for T4 trains departing after 5:08pm on Fridays. The next train would leave at 5:12, and is scheduled to arrive at 5:16:30pm, making the answer 5:17pm, or 17:17.</li>
+  </ol>
+
+  <h5 id="flag-4">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{1717}</code></p>
+</details>
+
+<h3 id="firednd-1-30-points">firednd-1 (30 points)</h3>
+
+<p>CEO of FireDnD here again!</p>
+
+<p>Quite recently, I had to fire my frontend web developer, because they were doing a terrible job, as you can probably tell from our <a href="https://firednd-syd.web.app" target="_blank">incomplete website</a>. I’m still in the process of removing all traces of him from our current website. Your first task is to find a picture of our fired frontend team member, as I haven’t deleted it from our website’s resources yet, but I can’t find it for some reason.</p>
+
+<p>Good luck!</p>
+
+<h4 id="solution-5">Solution</h4>
+
+<details>
+
+  <h5 id="walkthrough-5">Walkthrough</h5>
+
+  <p>Typically when I’m solving a CTF challenge which involves trying to find some hidden resource on a website, I’ll open the ‘Network’ tab of my browser, and start recording the requests the browser is making. These requests can tell me, for example, what images the browser is loading in - a fair initial suspicion would be that the browser is loading this image of the fired team member, but not displaying it.</p>
+
+  <p>However, this isn’t quite the case. If we visit the /team.html page, we can see that three images are being loaded in: team-1.jpg, team-2.jpg and team-4.jpg. The glaring omission of team-3.jpg suggests that this might be our missing file. Visiting /team-3.jpg gives us our flag!</p>
+
+  <h5 id="flag-5">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{h3Lps_t0_c0uNt}</code></p>
+</details>
+
+<h3 id="firednd-2-30-points">firednd-2 (30 points)</h3>
+
+<p>No way, it’s me, the CEO of <a href="https://firednd-syd.web.app" target="_blank">FireDnD</a> again!</p>
+
+<p>My fired frontend developer hid a secret webpage on our website. I found out about this cool way to prevent search engines from finding the page, so I used that to prevent the page from showing up. I also replaced the contents of the page. Surely no-one can find it now, right?</p>
+
+<h4 id="solution-6">Solution</h4>
+
+<details>
+
+  <h5 id="walkthrough-6">Walkthrough</h5>
+
+  <p>The first big hint in this challenge comes from the ‘cool way to prevent search engines from finding’ part - this is the exact function of robots.txt. If we visit /robots.txt, we find the following:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User-agent: Googlebot
+Disallow: /ry4ns-s3cret-p4ge.html
+</code></pre></div>  </div>
+
+  <p>We’ve now got the URL for the secret page! If we pay it a visit, however, we get this:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi! CEO of FireDnD here! I have taken over Ryan's secret page after firing him. That being said, I heard that nothing is deleted from the internet forever. Surely no one has a copy of the old contents of this page?
+</code></pre></div>  </div>
+
+  <p>Unfortunate. Except, not really, because every internet historian’s favourite tool, The Internet Wayback Machine at <a href="web.archive.org" target="_blank">web.archive.org</a> happens to conveniently have a copy of the page!</p>
+
+  <p>There’s an unloaded image on this page. Looking at the source code, we see</p>
+
+  <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Ryan's top secret page<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="nt">&lt;p&gt;</span>Hello, I'm Ryan, a developer at firednd. This is my secret page!<span class="nt">&lt;/p&gt;</span>
+
+    <span class="nt">&lt;p&gt;</span>Here is a secret:<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/web/20210106050020im_/http://firednd-syd.web.app/FLAG{hiDD3n_in_the_s0uRce}"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>  </div>
+
+  <p>giving us our flag.</p>
+
+  <h5 id="flag-6">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{hiDD3n_in_the_s0uRce}</code></p>
+
+</details>
+
+<h2 id="web">Web</h2>
+
+<h3 id="simplelogin-30-points-each">simplelogin (30 points each)</h3>
+
+<p>When I grow up, I want to be a software developer at NASA. I’m still on my way to getting there. I decided to practice my web development skills and make an unbreakable login site. I bet you can’t hack me - I’ll even tell you that my username is <code class="language-plaintext highlighter-rouge">astronaut</code>.</p>
+
+<p>Good luck!</p>
+
+<p><a href="https://github.com/abiramen/2021-compclub-summer-ctf/tree/main/web/simplelogin-src" target="_blank">Challenge source code</a></p>
+
+<p>There are three flags that can be found at the above link.</p>
+
+<p>Flag 0 has three parts to it - you’ll have to find each part (labelled 1/3, 2/3 and 3/3) and join them together to get the full flag!</p>
+
+<h4 id="flag-0-solution">Flag 0 solution</h4>
+
+<details>
+
+  <h5 id="walkthrough-7">Walkthrough</h5>
+
+  <p>(Replace <code class="language-plaintext highlighter-rouge">Ctrl</code> with <code class="language-plaintext highlighter-rouge">Cmd</code> on macOS.)</p>
+
+  <p>This first (well, zeroth) flag requires you to view the page source - that is, the code used to render the webpage to you - to look for comments. The flag is split up across three comments in three different files:</p>
+
+  <ul>
+    <li>
+      <p>index.html</p>
+
+      <p>This HTML file contains the overall structure of the page, and can be easily found through <code class="language-plaintext highlighter-rouge">Ctrl+Shift+I</code> and checking the ‘Elements’ tab or <code class="language-plaintext highlighter-rouge">Ctrl+U</code>, to view the raw HTML (on Chrome, at least).</p>
+    </li>
+    <li>
+      <p>hello.js</p>
+
+      <p>JS files usually make a webpage interactive. You could’ve found this from the ‘Sources’ tab, or noticing the JS file was loaded in the HTML source code, or even noticing the origin of the sneaky message in the ‘Console’ tab.</p>
+    </li>
+    <li>
+      <p>style.css</p>
+
+      <p>CSS files make pages look pretty. You again could’ve found this from the ‘Sources’ tab, or noticing the CSS file was loaded in the HTML source code.</p>
+    </li>
+  </ul>
+
+  <h5 id="flag-7">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{0_i_f0unD_tHre3_tYpEs_oF_cOmM3NtS}</code></p>
+
+</details>
+
+<h4 id="flag-1-solution">Flag 1 solution</h4>
+
+<details>
+
+  <h5 id="walkthrough-8">Walkthrough</h5>
+
+  <p>(Replace <code class="language-plaintext highlighter-rouge">Ctrl</code> with <code class="language-plaintext highlighter-rouge">Cmd</code> on macOS.)</p>
+
+  <p>CTF authors like to involve cookies in challenges somehow, and this includes me! Using <code class="language-plaintext highlighter-rouge">Ctrl+Shift+I</code> on Chrome and selecting the Application tab, and then ‘Cookies’, reveals all cookies set by the current site, including the flag!</p>
+
+  <h5 id="flag-8">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{1_i_cHeCkeD_f0r_c0oki3S}</code></p>
+
+</details>
+
+<h4 id="flag-2-solution">Flag 2 solution</h4>
+
+<details>
+
+  <h5 id="walkthrough-9">Walkthrough</h5>
+
+  <p>You probably tried to login before anything else, but this is in fact the final flag! Logging in with incorrect details gives us the following message:</p>
+
+  <p>‘Password did not match expected encoded result: <code class="language-plaintext highlighter-rouge">aXJlQUxMeUxpa0VzUGFjZVNoaVBzMjA3JA==</code>’</p>
+
+  <p>This looks a lot like base-64 encoding - the biggest giveaway is the occurrence of equal signs on the end (which has a 2/3 probability of happening with base-64). Googling for a base-64 decoder gives us plenty of results, and decoding it gets us the password to use with the username ‘astronaut’ - ‘ireALLyLikEsPaceShiPs207$’. Logging in will give you the flag.</p>
+
+  <p>You can also decode base-64 on a Linux command line with <code class="language-plaintext highlighter-rouge">echo 'aXJlQUxMeUxpa0VzUGFjZVNoaVBzMjA3JA==' | base64 -d</code>.</p>
+
+  <h5 id="flag-9">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{2_b4Se_64_iS_nOt_eNcrYpTi0n}</code></p>
+
+</details>
+
+<h2 id="forensics">Forensics</h2>
+
+<h3 id="spotify-20-points">Spotify (20 points)</h3>
+
+<p>i made my spotify look pretty do you like it</p>
+
+<p>Your flag will be a number. Wrap the number with <code class="language-plaintext highlighter-rouge">FLAG{}</code> - for example, if the number is 42, use <code class="language-plaintext highlighter-rouge">FLAG{42}</code>.</p>
+
+<p><a href="https://github.com/abiramen/2021-compclub-summer-ctf/blob/main/forensics/spotify/_ctfd/files/spotify.jpg" target="_blank">spotify.jpg</a></p>
+
+<h4 id="solution-7">Solution</h4>
+
+<details>
+  <h5 id="walkthrough-10">Walkthrough</h5>
+  <p>I tried to hints for this one in plain sight - taking a look at the two recent search items shows you a song named ‘Multiply’ and another named ‘Resolution’ - resolution is a term to describe how many pixels tall and wide an image/video is.</p>
+
+  <p>From multiplying the resolution of the image (887 x 606), we get our solution.</p>
+
+  <h5 id="flag-10">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{537522}</code></p>
+
+  <h3 id="other-notes-1">Other notes</h3>
+  <p>I made my Spotify look pretty using <a href="https://github.com/khanhas/spicetify-cli" target="_blank">Spicetify</a> with <a href="https://github.com/morpheusthewhite/spicetify-themes/tree/master/Dribbblish" target="_blank">this theme</a>.</p>
+</details>
+
+<h3 id="blank-space-30-points">Blank Space (30 points)</h3>
+
+<p>i love to listen to Taylor Swift while stargazing. here’s a picture I took, but my camera was broken</p>
+
+<p><a href="https://github.com/abiramen/2021-compclub-summer-ctf/blob/main/forensics/blank-space/_ctfd/files/blankspace.png" target="_blank">blankspace.png</a></p>
+
+<h4 id="solution-8">Solution</h4>
+
+<details>
+  <h5 id="walkthrough-11">Walkthrough</h5>
+  <p>In the workshop slides, I highly suggested getting either Photoshop or GIMP to use - however, this was entirely solvable with just Microsoft Paint.</p>
+
+  <p>I set the background of this image to #ffffff - this is the hexadecimal code for the colour white. I then used the paintbrush to hide the flag to #fffffd - a colour that is extremely close to white, but not quite, making the writing seem basically invisible.</p>
+
+  <p>When solving image challenges for CTFs like these, I typically use Photoshop:</p>
+
+  <ol>
+    <li>Open the Levels tool from Edit &gt; Adjustments &gt; Levels</li>
+    <li>Mess around with the input level sliders, and then the output level sliders and see if something reveals itself.</li>
+  </ol>
+
+  <p>This would’ve worked perfectly well for this challenge. However, a simpler solution would be:</p>
+
+  <ol>
+    <li>Open the image in Microsoft Paint.</li>
+    <li>Use the Fill bucket tool, and select a colour like black.</li>
+    <li>Click somewhere close to the border of the image, ‘flooding the image’.</li>
+  </ol>
+
+  <p>Paint only fills neighbouring pixels with the exact same colour - this should’ve revealed the off-white writing.</p>
+
+  <h5 id="flag-11">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{st4rBucKs_Lov3Rs}</code></p>
+
+  <h3 id="other-notes-2">Other notes</h3>
+  <p>Yes, this flag was a reference to the misheard ‘Starbucks Lovers’ lyrics from Taylor Swift’s Blank Space.</p>
+
+</details>
+
+<h3 id="egg-nog-50-points">Egg nog (50 points)</h3>
+
+<p>It’s hard to find egg nog after Christmas. It’s also hard to find my hidden message, I hope!</p>
+
+<p><a href="https://github.com/abiramen/2021-compclub-summer-ctf/blob/main/forensics/egg-nog/_ctfd/files/eggnog.jpg" target="_blank">eggnog.jpg</a>
+<a href="https://github.com/abiramen/2021-compclub-summer-ctf/blob/main/forensics/egg-nog/_ctfd/files/steggnog.png" target="_blank">steggnog.png</a></p>
+
+<h4 id="solution-9">Solution</h4>
+
+<details>
+
+  <h5 id="walkthrough-12">Walkthrough</h5>
+  <p>While this challenge uses a set of techniques that are relatively common in CTFs, paying attention to the workshop slides would have helped a lot here.</p>
+
+  <p>The first image you want to look at is eggnog.jpg - note that the contents featured in both images are basically identical, although the PNG is of much lower resolution. Looking at the file’s metadata, we can see that there is some hidden information in the EXIF data (JPG files can have EXIF data, PNG files don’t) - namely, the following string:</p>
+
+  <p><code class="language-plaintext highlighter-rouge">jocksfindquartzglyphvexbmw</code></p>
+
+  <p>We shall save this for later use.</p>
+
+  <p>The second image is named steggnog.png - a huge hint that more advanced image steganography, like least significant bit steganography, might be in use here. Googling ‘online steganography’ yields <a href="https://stylesuxx.github.io/steganography/" target="_blank">this website</a>. sDecoding it yields the following:</p>
+
+  <p><code class="language-plaintext highlighter-rouge">FAJI{tzhpzdtpditdfdcjthtzx}</code></p>
+
+  <p>This is the point where this challenge now becomes more crypto than forensics - we can see the result of our steganography decode looks almost like a flag. This is where we go back to our older string - <code class="language-plaintext highlighter-rouge">jocksfindquartzglyphvexbmw</code>. Googling this string yields a result about ‘perfect pangrams’ - sentences with all 26 letters of the alphabet exactly once. You might notice that this perfect pangram makes a perfect key for a <em>substitution cipher</em>.</p>
+
+  <p>Decoding the substitution cipher (using the perfect pangram as our ciphertext alphabet) on a website like <a href="https://cryptii.com/pipes/alphabetical-substitution" target="_blank">this</a> gives us our flag.</p>
+
+  <h5 id="flag-12">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{notsoinsignificantnow}</code></p>
+
+  <h3 id="other-notes-3">Other notes</h3>
+  <p>The reason the PNG was lower resolution was so that your computer didn’t die trying to decode using the steganography tool - fewer pixels means less work.</p>
+
+</details>
+
+<h2 id="miscellaneous">Miscellaneous</h2>
+
+<h3 id="slides-10-points">Slides (10 points)</h3>
+
+<p><a href="https://docs.google.com/presentation/d/1wS4-rn9sk3RTaAJHo2DJmBTq2G48ULC4ezQbbco7Gio/edit?usp=sharing" target="_blank">Here are the slides</a> from today’s workshop. It comes with a free flag!</p>
+
+<h4 id="solution-10">Solution</h4>
+
+<details>
+  <h5 id="walkthrough-13">Walkthrough</h5>
+  <p>Find the slide about what CTF flags are - it’s in plain sight!</p>
+
+  <h5 id="flag-13">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{y0ur_f1rSt_flaG}</code></p>
+</details>
+
+<h3 id="what-was-that-25-points">What was that? (25 points)</h3>
+
+<p>Houston, we’ve got… a disappearing black hole??</p>
+
+<p>Make sure that the FLAG{} contents are all in lowercase.</p>
+
+<p><a href="https://github.com/abiramen/2021-compclub-summer-ctf/blob/main/misc/what-was-that/_ctfd/files/whatwasthat.mp4" target="_blank">whatwasthat.mp4</a></p>
+
+<h4 id="solution-11">Solution</h4>
+
+<details>
+  <h5 id="walkthrough-14">Walkthrough</h5>
+  <p>This challenge features the distinctive short and long flashes (or dots and dashes used in Morse code). Fortunately, there’s also synced beeping noises with the video, which makes interpreting the Morse code a lot easier (although you can just use the video, too!):</p>
+
+  <ol>
+    <li>Open the audio from the video in an audio editor like Audacity.</li>
+    <li>Use the spectrogram to identify where each short (dot) flash or long (dash) sound is, and enter it into a Morse Code translator, and voila!</li>
+  </ol>
+
+  <h5 id="flag-14">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{no_remorse}</code></p>
+</details>
+
+<h3 id="starlang-30-points">starlang (30 points)</h3>
+
+<p>I made my own programming language called starlang! It’s pretty self-explanatory. Can you figure out what this program prints?</p>
+
+<p>(Make sure to open the file with a text editor so that you can read its contents.)</p>
+
+<p><a href="https://github.com/abiramen/2021-compclub-summer-ctf/blob/main/misc/starlang/_ctfd/files/my_program.starlang" target="_blank">my_program.starlang</a></p>
+
+<h4 id="solution-12">Solution</h4>
+
+<details>
+
+  <h5 id="walkthrough-15">Walkthrough</h5>
+  <p>This challenge uses a fake, but straight-forward ‘programming language’ - this is what we call ‘pseudocode’, which is a simplified notation to describe how a program or algorithm should work.</p>
+
+  <p>There are some things that you might need to be careful for here:</p>
+
+  <ul>
+    <li>If a ‘branch’ of an if statement is true, then we don’t need to worry about other branches of the if statement. For example:</li>
+  </ul>
+
+  <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">do_something</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">do_something_else</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">do_other_thing</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">do_last_thing</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>  </div>
+
+  <p>If <code class="language-plaintext highlighter-rouge">b</code> is true, then it doesn’t matter if <code class="language-plaintext highlighter-rouge">c</code> is true as well - once we’ve completed <code class="language-plaintext highlighter-rouge">do_something_else()</code>, we skip to the end of the entire if statement structure.</p>
+
+  <ul>
+    <li>Be careful with ‘less than’ - this is not the same as ‘less than or equal to’.</li>
+  </ul>
+
+  <p>Following through each of the statements should get you to the flag.</p>
+
+  <h5 id="flag-15">Flag</h5>
+  <p><code class="language-plaintext highlighter-rouge">FLAG{n3buL0uS_r3d5h1fT}</code></p>
+</details>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>On the day, we received 928 attempted flag submissions amongst 54 competitors in 10 teams, of which, 127 of submissions were correct.</p>
+
+<p>Thanks to all the students that came along and participated in workshops and the CTF! I hope to see you all next year, when we can hopefully actually run this event in person.</p>
+
+<p>Also a shoutout to all the CompClub team, workshop developers and mentors for such a fantastic week, as well as all the random people I’ve asked to test my challenges over the past 2 weeks!</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Nearest by straight-line distance. The location of a station can be determined by the position of the ‘T’ logo on Google Maps. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    <script src="https://utteranc.es/client.js" repo="abiramen/site-utterances" issue-term="pathname" label="utteranc.es" theme="preferred-color-scheme" crossorigin="anonymous" async>
+    </script>
+</div>
+
+<script src="/assets/vendor/littlefoot/littlefoot.js"></script>
+
+    
+    <footer>
+    <div id = "footer-content">
+        <div id="contact">
+            <a href = "https://github.com/abiramen" target="_blank">GitHub: @abiramen</a><br>
+            <a href = "https://twitter.com/abiramen" target="_blank">Twitter: @abiramen</a><br>
+            println!("Email: {}@{}", "hi", "abiram.me");<br>
+            println!("Discord: {}#{}", "abiramen", 2452);
+        </div>
+        <div class="centre" id="love-and-ramen" style="margin-bottom: 0.5rem">Made with <span class="icon">favorite</span> and ramen by Abiram</div>
+        <img src="/assets/images/ramen-logo.png" id = "ramen-footer" width = "75px" alt="logo">
+        <div id="footer-flavour">You're at the bottom of this page. Or are you?</div>
+    </div>
+</footer>
+
+
+    <script src="/assets/js/common.js"></script>
+    
+    
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/jquery-min-3.4.2.js"></script>
+    <script type="application/javascript">
+      littlefoot.default();
+    </script>
+    
+    <!-- Google Analytics scripts added by the NSA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128951835-2"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-128951835-2');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+        crossorigin="anonymous"></script>
+            
+  </body>
+</html>

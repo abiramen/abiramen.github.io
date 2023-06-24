@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CSE and VS Code | abiram.me</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link type="application/atom+xml" rel="alternate" href="/feed.xml">
+    <link rel="shortcut icon" href="/assets/images/ramen-bricks.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet">
+    <meta name="theme-color" content="#000000"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>CSE and VS Code | the ramen space</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="CSE and VS Code" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="We’re going to be setting up a text editor called Visual Studio Code, or VS Code, to remotely work on the CSE computers without needing a VNC client!" />
+<meta property="og:description" content="We’re going to be setting up a text editor called Visual Studio Code, or VS Code, to remotely work on the CSE computers without needing a VNC client!" />
+<meta property="og:site_name" content="the ramen space" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-28T00:00:00+00:00" />
+<script type="application/ld+json">
+{"headline":"CSE and VS Code","dateModified":"2021-08-28T00:00:00+00:00","datePublished":"2021-08-28T00:00:00+00:00","description":"We’re going to be setting up a text editor called Visual Studio Code, or VS Code, to remotely work on the CSE computers without needing a VNC client!","url":"/cse-setup","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/ramen-bricks.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"/cse-setup"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    
+    <nav id = "navbar">
+    <div id="nav-contain">
+        <a href="/" id="navbar-logo">
+            <img src="/assets/images/ramen-logo.png" alt="neon-logo" id="logo"/>
+        </a>
+        <div id="nav-home">
+            <a href="/" id="navbar-name">@abiramen</a>
+        </div>
+
+        <div id="nav-right">
+            <a href="/projects">Projects</a>
+            <a href="/posts">Posts</a>
+        </div>
+
+        <img src="/assets/images/hamburger.svg" alt="hamburger" id="hamburger"/>
+        <div id="nav-border"></div>
+    </div>
+</nav>
+
+<div id="overlay">
+    <span id="overlay-close">&times;</span>
+    <div id="overlay-content">
+        <a href="/"><img src="/assets/images/ramen-logo.png" alt="neon-logo" id="overlay-logo"/></a>
+        <h3>@abiramen</h3>
+        <a href="/projects">Projects</a>
+        <a href="/posts">Posts</a>
+    </div>
+</div>
+
+    
+    <link rel="stylesheet" href="/assets/css/post.css" />
+<link rel="stylesheet" href="/assets/css/tags.css" />
+<link rel="stylesheet" href="/assets/vendor/littlefoot/littlefoot.css" />
+
+<div id="post-splash" class="splash">
+    <div class="container">
+        <div id="splash-text" class="post-desc">
+            <div id="post-head">
+                <span id="post-date">30 August 2021  (Updated 13 September 2022) </span> 
+            </div>
+            <div id="post-title">CSE and VS Code</div>
+            <div id="post-time"></div>
+            <div id="post-desc">Use VS Code to work on CSE machines from the convenience of your own computer!</div>
+            <div id="post-tags">
+                Tags:  
+                <a class="tag-link" href=/tags/unsw-cse rel="category tag">
+                    <span class="post-tag">unsw-cse</span>
+                </a>
+                 
+                <a class="tag-link" href=/tags/guide rel="category tag">
+                    <span class="post-tag">guide</span>
+                </a>
+                 
+                <a class="tag-link" href=/tags/vscode rel="category tag">
+                    <span class="post-tag">vscode</span>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    <a id="scroll-arrow" class="page-anchor-offset post-arrow" href="#post-contents">
+        <div class="icon">keyboard_arrow_down</div>
+    </a>
+
+</div>
+
+<div id="post-contents" class="container">
+    <p>We’re going to be setting up a text editor called Visual Studio Code, or VS Code, to remotely work on the CSE computers without needing a VNC client!</p>
+
+<h2 id="why-are-we-doing-this">Why are we doing this?</h2>
+<p>You’ve likely used a program called TigerVNC to connect to the School of CSE’s computers before, which provides you a visual interface with a full desktop environment. f you’re currently doing COMP1511, I would strongly advise you to use the provided desktop environment and gedit over TigerVNC for the first week, just to familiarise yourself with it.</p>
+
+<p>The solution we’re about to go through provides a more seamless coding experience without having to load a full visual interface from CSE computers. This has the added benefits of not being affected by compression, especially if you have a poor connection, and being able to use a more fully fledged editor.</p>
+
+<p class="alert alert-red"><em><strong>obligatory disclaimer</strong>: despite myself (and those acknowledged in this post) being employed by the school of cse at the time of writing, this does <strong>not</strong> necessarily reflect the views of my employer. i am also not responsible if your computer blows up. you get it, don’t you?</em> 👌👌</p>
+
+<h2 id="getting-started-">Getting started 🎉</h2>
+<p>First of all, we’re going to acquaint ourselves with Visual Studio Code, or VS Code, a text editor.</p>
+
+<ol>
+  <li><strong>Download and install Visual Studio Code.</strong> You can find a download <a href="https://code.visualstudio.com/download" target="_blank">here</a>.</li>
+  <li><strong>If prompted to do so during the installation process</strong>, select the checkbox which says ‘Add to PATH’.</li>
+  <li><strong>Restart your computer once you’re done.</strong></li>
+</ol>
+
+<p>You should now have VS Code installed! You can now edit files on your own computer, but that’s not quite what we want - our goal is to edit files on CSE machines.</p>
+
+<h2 id="our-friend-ssh-">Our friend, SSH 🙃</h2>
+<p>Some cool computer scientists invented a way to allow you to communicate with remote computers over the internet called SSH, or Secure Shell. This allows us to edit files on another computer, such as the CSE servers, and run commands through a terminal on CSE servers.</p>
+
+<p>Luckily for us, we can add an extension to VS Code to use SSH to connect to CSE machines.</p>
+
+<p class="alert">This guide is particularly intended for first year CSE students, especially if you’re taking COMP1511, COMP1521 and COMP2521. If you’re a more experienced user with your own local setup, and have other requirements or prefer to have a bit more control over everything, check out this guide <a href="/cse-sshfs" target="_blank">here</a>.</p>
+
+<h3 id="part-1-installing-the-extension">Part 1: Installing the extension</h3>
+<ol>
+  <li><strong>Open VS Code.</strong></li>
+  <li><strong>Open the Extensions menu.</strong> You can access it using <code class="language-plaintext highlighter-rouge">Ctrl+Shift+X</code>.</li>
+  <li><strong>Search for and install the SSH FS extension.</strong> Once this is done, you might be prompted to reload the window. <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">1</a></sup></li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-install.png" alt="Installing the SSH FS extension" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Installing the SSH FS extension.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="part-2-configuring-to-connect-to-cse">Part 2: Configuring to connect to CSE</h3>
+
+<p>Now that we’ve installed, there should be a new icon in the menu bar on the left of your VS Code window.</p>
+
+<p class="alert">On macOS? Use the <kbd>Cmd</kbd> key instead of <kbd>Ctrl</kbd>.</p>
+
+<ol>
+  <li><strong>Select the newly added SSH FS icon</strong>. This is the menu button in blue in the below image.</li>
+  <li>
+    <p><strong>Under the Configuration section</strong>, select the button to create a new configuration.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-add-config.png" alt="Adding a new configuration under the SSH FS menu" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">Adding a new configuration under the SSH FS menu.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><strong>Give the configuration a name</strong>, and click save. A good name might be ‘cse’.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-new-config.png" alt="Creating the configuration" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">Creating the new configuration.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>We’ll now need to edit this configuration</strong>. In the new screen that pops up, fill out the following options:
+    <ul>
+      <li><strong>Host</strong>: Set this to be <code class="language-plaintext highlighter-rouge">login.cse.unsw.edu.au</code>.</li>
+      <li><strong>Port</strong>: This should be set to <code class="language-plaintext highlighter-rouge">22</code>.</li>
+      <li><strong>Root</strong>: Set this to <code class="language-plaintext highlighter-rouge">~</code>, which is the key that’s generally above the tab key on most keyboards.</li>
+      <li><strong>Username</strong>: This should be your zID, for example, <code class="language-plaintext highlighter-rouge">z5123456</code>.</li>
+    </ul>
+
+    <p><strong>Leave everything else blank</strong>, scroll down, and <strong>click save</strong>.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-sample-config.png" alt="Example configuration" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">A sample configuration for z5123456.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+
+<h3 id="part-3-using-our-new-configuration-to-connect">Part 3: Using our new configuration to connect!</h3>
+
+<p>We’re finally at the part where we get to connect to CSE machines.</p>
+
+<ol>
+  <li><strong>Head back to the SSH FS menu</strong>. Our new CSE configuration should be listed.</li>
+  <li>
+    <p><strong>Click the button to ‘add as workspace folder’</strong>.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-add-workspace.png" alt="Add as workspace folder" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">Add CSE as a workspace folder.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>Enter your UNSW password when prompted</strong>.</li>
+</ol>
+
+<p>Your CSE files should now all be visible in the sidebar! You can double-click to open them and edit them, or use <kbd>Ctrl</kbd>+<kbd>N</kbd> and <kbd>Ctrl</kbd>+<kbd>S</kbd> to create new files.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-see-files.png" alt="See your files!" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">We should now be able to see our CSE files!</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There’s a good chance that you also need a <strong>terminal</strong> to get your work done. To do this,</p>
+
+<ol>
+  <li><strong>Head back to the SSH FS menu</strong>, where our CSE configuration is listed.</li>
+  <li><strong>Click the ‘open remote SSH terminal’ button</strong>. A terminal pane should now open. You can use commands like <code class="language-plaintext highlighter-rouge">cd</code> and <code class="language-plaintext highlighter-rouge">ls</code> just as you’re used to. Instead of using <code class="language-plaintext highlighter-rouge">gedit</code> now, we can create new files inside VS Code.</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-open-terminal.png" alt="See your files!" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">This button should launch a terminal on the bottom of our window.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You can open as many new terminals as you want.</p>
+
+<h3 id="part-4-optional-using-the-code-command-to-open-files">Part 4 (optional): Using the <code class="language-plaintext highlighter-rouge">code</code> command to open files</h3>
+
+<p>We can enable a setting to allow us to use the <code class="language-plaintext highlighter-rouge">code</code> command in SSH terminal to open files (a bit like using the <code class="language-plaintext highlighter-rouge">gedit</code> command to open a new window containing a file):</p>
+
+<ol>
+  <li><strong>Open the Settings menu.</strong> This can be accessed by using <kbd>Ctrl</kbd>+<kbd>,</kbd>, or the Settings icon in the bottom left of your window.</li>
+  <li>
+    <p><strong>Search for the ‘sshfs flags’ setting</strong>, and select <em>‘Edit in settings.json’</em>.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-flags.png" alt="Searching for the SSH FS flags setting." /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">The following option should show up in our search.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-json-flags.png" alt="The SSH FS flags settings in JSON" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">A new tab should open, presenting an empty set of square brackets like this. There may or may not be a comma there.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><strong>Add the following in between the square brackets</strong>: <code class="language-plaintext highlighter-rouge">"REMOTE_COMMANDS"</code> (be sure to include the quotation marks), and use <kbd>Ctrl</kbd>+<kbd>S</kbd> to save the file.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-added-flag.png" alt="The &quot;REMOTE_COMMANDS&quot; flag added." /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">You should now have this in between the square brackets. Don’t add a comma if there wasn’t already one there.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+
+<p>You should now be able to use the <code class="language-plaintext highlighter-rouge">code</code> command in your terminal the next time you connect.</p>
+
+<h2 id="bonus-coins-avoiding-the-need-to-type-your-password-each-time">Bonus coins: Avoiding the need to type your password each time</h2>
+
+<p>Being prompted to enter our password each time we connect is slightly annoying. Storing our password in the config file isn’t ideal either, so our solution involves using a magic pair of keys.</p>
+
+<p>(If you’ve done this before as part of the old guide, feel free to skip to <a href="#part-7-telling-the-ssh-fs-extension-to-use-your-new-keys" class="page-anchor-offset">Part 7</a> in this section.)</p>
+
+<h3 id="part-5-generating-a-keypair">Part 5: Generating a keypair</h3>
+<h5 id="windows-10">Windows 10</h5>
+<ol>
+  <li><strong>Open Windows Powershell.</strong> You can do this by entering <code class="language-plaintext highlighter-rouge">powershell</code> in Search.</li>
+  <li><strong>Generate a keypair.</strong>  Use the command <code class="language-plaintext highlighter-rouge">ssh-keygen -t ed25519</code> in Powershell.</li>
+  <li><strong>You’ll be asked where you want to save the key.</strong> Leave this blank, and press <kbd>Enter</kbd>.</li>
+  <li><strong>You’ll be asked to set a password.</strong> Leave this blank, and press <kbd>Enter</kbd> again. Do the same when you are asked to confirm it.</li>
+</ol>
+
+<h5 id="linuxmacos">Linux/macOS</h5>
+
+<ol>
+  <li><strong>Open the Terminal.</strong></li>
+  <li><strong>Generate a keypair.</strong>  Use the command <code class="language-plaintext highlighter-rouge">ssh-keygen -t ed25519</code>.</li>
+  <li><strong>You’ll be asked where you want to save the key.</strong> Leave this blank, and press <kbd>Enter</kbd>.</li>
+  <li><strong>You’ll be asked to set a password.</strong> Leave this blank, and press <kbd>Enter</kbd> again. Do the same when you are asked to confirm it.</li>
+</ol>
+
+<p>Your computer has now generated two files: <code class="language-plaintext highlighter-rouge">id_ed25519</code> and <code class="language-plaintext highlighter-rouge">id_ed2559.pub</code>. The <code class="language-plaintext highlighter-rouge">id_ed25519.pub</code> file is what’s called a public key, while <code class="language-plaintext highlighter-rouge">id_ed25519</code> is a private key. <strong>Never share (or really, even open) your private key.</strong> It’s called a private key for a reason <del>(that is, because you should share it with the world)</del>.</p>
+
+<h3 id="part-6-using-the-keypair-on-cse-machines">Part 6: Using the keypair on CSE machines</h3>
+<p>For this to work, we need to give the CSE machines the <strong>public</strong> half of your keypair. If you’re on Linux/macOS, this should be pretty easy, but if you’re on Windows 10, there’s a few more steps.</p>
+
+<h5 id="windows-10-1">Windows 10</h5>
+<ol>
+  <li><strong>Open Powershell</strong>, just like in Part 4. You can use the same window if you still have it open.</li>
+  <li>
+    <p><strong>Run the following command in Powershell</strong>, replacing with your own zID. Enter your password when prompted. (Yes, the entire thing should be one command.)</p>
+
+    <p><code class="language-plaintext highlighter-rouge">ssh z5555555@cse.unsw.edu.au "mkdir ~/.ssh;chmod 700 ~/.ssh;touch ~/.ssh/authorized_keys;chmod 600 ~/.ssh/authorized_keys"</code></p>
+  </li>
+  <li>
+    <p><strong>Run the following command</strong>, again replacing with your own zID. Enter your password when prompted. (Again, this is all one command, so be sure to copy-paste the whole thing!)</p>
+
+    <p><code class="language-plaintext highlighter-rouge">type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh z5555555@cse.unsw.edu.au "cat &gt;&gt; .ssh/authorized_keys"</code></p>
+  </li>
+  <li><strong>Attempt to connect</strong> with <code class="language-plaintext highlighter-rouge">ssh z5555555@cse.unsw.edu.au</code>, replacing with your own zID. If we were successful, you should <strong>not</strong> be prompted for your password!</li>
+</ol>
+
+<h5 id="linuxmacos-1">Linux/macOS</h5>
+<ol>
+  <li><strong>Open the Terminal.</strong></li>
+  <li>
+    <p><strong>Run the following command</strong>, replacing with your own zID.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">ssh-copy-id z5555555@cse.unsw.edu.au</code></p>
+  </li>
+  <li><strong>Enter your password.</strong> You’ll be asked for your CSE password one last time, for the key to be copied over.</li>
+  <li><strong>Attempt to connect</strong> with <code class="language-plaintext highlighter-rouge">ssh z5555555@cse.unsw.edu.au</code>, replacing with your own zID. If we were successful, you should <strong>not</strong> be prompted for your password!</li>
+</ol>
+
+<p>Voila! You had it a bit easier here.</p>
+
+<h3 id="part-7-telling-the-ssh-fs-extension-to-use-your-new-keys">Part 7: Telling the SSH FS extension to use your new keys</h3>
+
+<ol>
+  <li><strong>Open the SSH FS menu in VS Code</strong>, yet again.</li>
+  <li>
+    <p><strong>Select the ‘edit configuration’ button</strong> for your CSE configuration.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><img src="/assets/images/blog/cse-setup/sshfs-edit.png" alt="Editing the CSE configuration" /></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">Editing the CSE configuration.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>Scroll down</strong> to the ‘private key’ option.
+    <ul>
+      <li>If you’re on <strong>Windows</strong>, set this to <code class="language-plaintext highlighter-rouge">$USERPROFILE/.ssh/id_ed25519</code>.</li>
+      <li>If you’re on <strong>macOS or Linux</strong>, set this to <code class="language-plaintext highlighter-rouge">$HOME/.ssh/id_ed25519</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Be sure to scroll down and click save.</strong></li>
+  <li><strong>Connect again</strong>, just like in Part 3. You shouldn’t be prompted for your password now!</li>
+</ol>
+
+<h3 id="other-boring-stuff-starting-in-a-different-folder">Other (boring) stuff: Starting in a different folder</h3>
+
+<p>If you hate clutter and don’t want to your entire CSE home directory (say, for example, you have a folder <code class="language-plaintext highlighter-rouge">~/comp1511</code> in which you do all your work in), you can edit your SSH FS configuration to start in a different <strong>root</strong> directory, such as <code class="language-plaintext highlighter-rouge">~/comp1511</code> instead of <code class="language-plaintext highlighter-rouge">~</code>, or even just make a whole new configuration for this.</p>
+
+<h2 id="making-vs-code-even-cooler">Making VS Code even cooler</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/assets/images/blog/cse-setup/my-vscode.png" alt="My VS Code" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">I personally don’t code on CSE machines, but my VS Code looks like this!</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="editor-rulers">Editor rulers</h3>
+<p>The COMP1511 style guide requires you to make sure your lines of code aren’t longer than 80 characters (and it’s good practice to do so!). You can make VS Code show a handy little ruler to make sure your lines aren’t too long.</p>
+
+<ol>
+  <li><strong>Open the settings.json file.</strong> To do this, press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> and search for <strong>Open Settings (JSON).</strong> A file should open.</li>
+  <li><strong>We need to add to this file.</strong> You should see that the last line is a curly brace like this: <code>}</code>. What we want to do is add a comma to the second last line. Then, create a new line after the comma, and paste this:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"[c]" :{
+ "editor.rulers" : [
+     80
+ ]
+}
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="other-extensions">Other extensions</h3>
+<p>VS Code has heaps of themes and extensions. Some which I use:</p>
+<ul>
+  <li><strong>Material Icon Theme.</strong></li>
+  <li><strong>Dainty and Dainty - Material Theme.</strong> I personally use Dainty - Material Theme Ocean.</li>
+  <li><strong>Discord Rich Presence.</strong> If you use Discord, then it’ll update your currently playing status with details of what you’re coding on. If one of your friends tries to drag you into a voice call, you can just open up VS Code and tell them that you’re busy working 😛</li>
+</ul>
+
+<p>It’s worth noting that several extensions may not work due to the nature of how the SSH FS extension works - if there’s a particular extension you need, and you’re a more advanced user, try following my <a href="/cse-sshfs">other guide</a> instead.</p>
+
+<h2 id="troubleshooting-ssh-fs">Troubleshooting SSH FS</h2>
+
+<h3 id="error-running-command-sshfsadd">Error running command sshfs.add</h3>
+
+<p>Be sure that you’ve used the correct name for the Host under your configuration, such as <code class="language-plaintext highlighter-rouge">login0.cse.unsw.edu.au</code> for example. If this doesn’t work, try using <code class="language-plaintext highlighter-rouge">login.cse.unsw.edu.au</code>, or <code class="language-plaintext highlighter-rouge">cse.unsw.edu.au</code> instead.</p>
+
+<h2 id="have-feedback-or-want-to-reach-out">Have feedback, or want to reach out?</h2>
+<p>If you’ve spotted an error, or have any suggestions or improvements that I can make, feel free to contact me! My details are at the bottom of this page.</p>
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+<ul>
+  <li><a href="https://github.com/spanishpear" target="_blank">spanishpear</a> for letting me know that CSE intends to encouage students to use this extension, and posting the original GitHub issue which led to the <code class="language-plaintext highlighter-rouge">code</code> command getting added, leading to me unshelving this blogpost idea.</li>
+  <li><a href="https://github.com/hexDoor">hexDoor</a> for discovering and filing an issue with the SSH FS extension’s method of determining startup directory.</li>
+  <li>The maintainers and contributors of relevant open source software, particularly <a href="https://github.com/SchoofsKelvin">SchoofsKelvin</a> for their particular quick response to issues raised by the above people and myself.</li>
+  <li><a href="https://github.com/adaluong" target="_blank">adaluong</a> and <a href="https://github.com/lukefisklennon" target="_blank">lukefisklennon</a> for reading over this post and providing feedback.</li>
+</ul>
+
+<p>Again, this post does not necessarily represent the views of the School of CSE. CSE’s official guide can be found <a href="https://www.cse.unsw.edu.au/~learn/homecomputing/sshfs-remote/" target="_blank">here</a>.</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:2" role="doc-endnote">
+      <p>If you’re a WSL user, it’s probably better to do this in your regular VS Code workspace, or check out the more advanced version <a href="/cse-sshfs" target="_blank">here</a>. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    <script src="https://utteranc.es/client.js" repo="abiramen/site-utterances" issue-term="pathname" label="utteranc.es" theme="preferred-color-scheme" crossorigin="anonymous" async>
+    </script>
+</div>
+
+<script src="/assets/vendor/littlefoot/littlefoot.js"></script>
+
+    
+    <footer>
+    <div id = "footer-content">
+        <div id="contact">
+            <a href = "https://github.com/abiramen" target="_blank">GitHub: @abiramen</a><br>
+            <a href = "https://twitter.com/abiramen" target="_blank">Twitter: @abiramen</a><br>
+            println!("Email: {}@{}", "hi", "abiram.me");<br>
+            println!("Discord: {}#{}", "abiramen", 2452);
+        </div>
+        <div class="centre" id="love-and-ramen" style="margin-bottom: 0.5rem">Made with <span class="icon">favorite</span> and ramen by Abiram</div>
+        <img src="/assets/images/ramen-logo.png" id = "ramen-footer" width = "75px" alt="logo">
+        <div id="footer-flavour">You're at the bottom of this page. Or are you?</div>
+    </div>
+</footer>
+
+
+    <script src="/assets/js/common.js"></script>
+    
+    
+    <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/jquery-min-3.4.2.js"></script>
+    <script type="application/javascript">
+      littlefoot.default();
+    </script>
+    
+    <!-- Google Analytics scripts added by the NSA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128951835-2"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-128951835-2');
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+        crossorigin="anonymous"></script>
+            
+  </body>
+</html>
