@@ -24,7 +24,7 @@ Once I realised that a static site would better suit my needs, I knew that I wou
 
 After building this site with Jekyll, I have to say it's an absolute delight to work with. GitHub automatically builds a Jekyll site on push, and deploys it. Jekyll provides amazing templating support, reducing redundancy.Another fantastic feature is built-in support for writing pages and posts in Markdown (this is my first post in Markdown!! Hello world!!), for insertion into templates. While there are many Markdown-to-HTML converters out there, Jekyll just makes it seamless.
 
-If I ever require a page with server-side rendering, I can always host that on a separate domain. ralismark still says that Jekyll is great, although he does wish that he could server-side render LaTeX so that he doesn't need to do that on the client's device.
+If I ever require a page with server-side rendering, I can always host that on a separate domain. ralismark still says that Jekyll is great, although she does wish that he could server-side render LaTeX so that she doesn't need to do that on the client's device.
 ### Frontend frameworks
 ~~Admittedly as a result of me still being stuck in my old ways (or just being lazy), this site still uses jQuery in few places. I intend on porting it all to vanilla JavaScript at some point.~~ This site is now free of jQuery!  I also made the mistake of deciding to use Bootstrap when I started writing this site - mainly for layout (responsive containers), but you can probably see, this site looks relatively un-Bootstrapish. I also intend on removing Bootstrap at some point, since most of the layout stuff shouldn't be too hard to reimplement myself.
 ## Fun stuff
