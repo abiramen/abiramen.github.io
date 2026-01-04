@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on abiramen's site</title><link>https://abiram.me/tags/git/</link><description>Recent content in Git on abiramen's site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 18 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://abiram.me/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up WSL and GitHub (archive)</title><link>https://abiram.me/wsl-github/</link><pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate><guid>https://abiram.me/wsl-github/</guid><description>&lt;div class="alert alert-red"&gt;
+ This post is no longer up to date. I generally now advise most people use WSL 2. I may or may not write an updated version of this post in the future.
+&lt;/div&gt;
+
+&lt;p&gt;
+ If you're a UNSW student, there's a good chance that you're here from my CSE setup guide for vscode.
+ This is
+ going to be a short guide to setting up WSL, which provides you with a Linux environment within Windows. To go
+ through
+ the WSL section, you'll need to be on Windows 10. If you're here just to learn some basic Git, you can
+ &lt;a href="#git"&gt;click here&lt;/a&gt; to skip all the Windows stuff, free of charge!
+&lt;/p&gt;</description></item></channel></rss>

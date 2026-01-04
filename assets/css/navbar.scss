@@ -1,0 +1,133 @@
+nav {
+    background-color: $bg;
+    width: 100%;
+    padding: 0;
+    position: fixed;
+    z-index: 100;
+}
+
+#nav-contain {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav a {
+    color: white;
+    font-size: 1.3rem;
+    font-family: 'Metropolis';
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#navbar-name:hover {
+    color: white;
+}
+
+nav * a:hover {
+    text-decoration: none;
+}
+
+nav #nav-right a {
+    padding: 0px 0.6rem;
+}
+
+#nav-home {
+    float: left;
+    line-height: 3.5rem;
+    padding: 0 0.2rem;
+}
+
+#nav-right {
+    float: right;
+    line-height: 3.5rem;
+}
+
+#navbar-logo {
+    height: 3.5rem;
+    float: left;
+}
+
+#logo {
+    height: 3.5rem;
+    padding: 0.7rem 0.4rem;
+}
+
+#nav-border {
+    display: block;
+    width: 100%;
+    height: 0.2rem;
+    border-radius: 10px;
+    background: #e9e9e9;
+    margin: 0 auto;
+    clear: both;
+}
+
+#hamburger {
+    display: none;
+    float: right;
+    height: 3.5rem;
+    padding: 1rem 1rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #hamburger {
+        display: block;
+    }
+
+    #nav-right {
+        display: none;
+    }
+}
+
+#overlay {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 9999; 
+    background: radial-gradient(at bottom right, #1d151a, #0f161a);
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+#overlay-content {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    transform: translateY(-50%);
+    vertical-align: middle;
+}
+
+#overlay a, #overlay-close {
+    padding: 0.5rem;
+    font-size: 2.2rem;
+    color: #faffff;
+    display: block;
+    transition: 0.2s;
+}
+
+#overlay a:hover, #overlay-close:hover {
+    transform: scale(1.05);
+    text-decoration: none;
+}
+
+#overlay-close {
+    position: absolute;
+    right: 1.4rem;
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+#overlay h3 {
+    font-size: 1.3rem;
+}
+
+#overlay-logo {
+    height: 4rem;
+    margin: 1rem;
+}
