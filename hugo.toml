@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = 'https://abiram.me/'
 languageCode = 'en-us'
 title = "abiramen's site"
 # theme = ''

@@ -11,8 +11,7 @@
     <div id="post-tags">
         tags:
         {{ range .Params.tags }}
-        <a class="tag-link" href={{ "/tags/" | relLangURL }}{{ . | urlize }}
-            rel="category tag">
+        <a class="tag-link" href="{{ "/tags/" | relURL }}{{ . | urlize }}">
             <span class="post-tag">{{ . }}</span>
         </a>
         {{ end }}

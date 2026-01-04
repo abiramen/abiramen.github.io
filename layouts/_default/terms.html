@@ -1,0 +1,16 @@
+{{ define "main" }}
+<link rel="stylesheet" href="/assets/css/tags.css"/>
+<div id="page-section" class="container">
+    <h2>all tags</h2>
+    <ul>
+      {{ range .Data.Terms.ByCount }}
+        <li class="tag-item">
+          <a class="tag-link" href="{{ .Page.RelPermalink }}" rel="category tag">
+            <span class="post-tag">{{ .Page.Title | lower }} ({{ .Count }})</span>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+    <h4 class="ralign"><a href="/posts">view all posts <span class="icon">keyboard_arrow_right</span></a></h4>
+</div>
+{{ end }}

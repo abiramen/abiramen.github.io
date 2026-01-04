@@ -1,0 +1,16 @@
+{{ define "main" }}
+<link rel="stylesheet" href="/assets/css/tags.css"/>
+
+<div id="page-section" class="container">
+  <h2>tagged with {{ .Title | lower }}</h2>
+  
+  <ul>
+    {{ range .Pages }}
+      {{ partial "snippet.html" . }}
+    {{ end }}
+  </ul>
+
+  <h4 class="ralign"><a href="/tags">view all tags <span class="icon">keyboard_arrow_right</span></a></h4>
+  <h4 class="ralign"><a href="/posts">view all posts <span class="icon">keyboard_arrow_right</span></a></h4>
+</div>
+{{ end }}
