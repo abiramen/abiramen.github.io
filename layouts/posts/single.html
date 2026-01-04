@@ -1,0 +1,46 @@
+{{ define "head" }}
+<link rel="stylesheet" href="{{ "/assets/css/post.css" | relURL }}" />
+<link rel="stylesheet" href="{{ "/assets/css/tags.css" | relURL }}" />
+<link rel="stylesheet" href="{{ "/assets/vendor/littlefoot/littlefoot.css" | relURL }}" />
+{{ end }}
+
+{{ define "main" }}
+<div id="post-splash" class="splash">
+    <div class="container">
+        <div id="splash-text" class="post-desc">
+            <div id="post-head">
+                <span id="post-date">{{ .Date.Format "Jan 2, 2006" }} {{ with .Params.last_update }} (Updated {{ . }}) {{ end }}</span> {{ if not (eq .Params.show_read_time false) }} ·
+                <div class="icon">schedule</div> {{ .ReadingTime }} min read {{ end }}
+            </div>
+            <div id="post-title">{{ .Title }}</div>
+            <div id="post-time"></div>
+            <div id="post-desc">{{ .Params.desc }}</div>
+            {{ with .Params.tags }}
+            <div id="post-tags">
+                tags: {{ range . }}
+                <a class="tag-link" href="{{ "/tags/" | relURL }}{{ . | urlize }}">
+                    <span class="post-tag">{{ . }}</span>
+                </a>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    <a id="scroll-arrow" class="page-anchor-offset post-arrow" href="#post-contents">
+        <div class="icon">keyboard_arrow_down</div>
+    </a>
+</div>
+
+<div id="post-contents" class="container">
+    {{ .Content }}
+    <script src="https://utteranc.es/client.js" repo="abiramen/site-utterances" issue-term="pathname" label="utteranc.es" theme="preferred-color-scheme" crossorigin="anonymous" async>
+    </script>
+</div>
+
+<script src="{{ "/assets/vendor/littlefoot/littlefoot.js" | relURL }}"></script>
+<script type="application/javascript">
+  if (typeof littlefoot !== 'undefined') {
+    littlefoot.default();
+  }
+</script>
+{{ end }}

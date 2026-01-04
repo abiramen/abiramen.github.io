@@ -1,0 +1,18 @@
+<a href = "{{ .page.RelPermalink }}" class = "showcase-anchor">
+    <div class = "showcase-item" id = "sc-{{ .page.Params.short }}">
+        <div class="showcase-text">
+            <div class="showcase-title">{{ .page.Title }}.</div>
+            <div class="showcase-duration">{{ .page.Params.time }}</div>
+            <div class="showcase-desc">{{ .page.Params.desc }}</div>
+        </div>
+        
+        <style scoped>
+            #sc-{{ .page.Params.short }} {
+                box-shadow:
+                    0 0 3px 2px #fff,  /* inner white */
+                    0 0 9px 9px {{ .color }}; /* outer cyan */
+            }
+
+        </style>
+    </div>
+</a>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    
+{{ $styles := resources.Get "css/styles.scss" | toCSS }}
+<link rel="stylesheet" href="{{ $styles.Permalink }}">    
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link type="application/atom+xml" rel="alternate" href="/feed.xml">
+    <link rel="shortcut icon" href="/assets/images/ramen-bricks.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet">
+    <meta name="theme-color" content="#000000"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    {{- template "_internal/google_analytics.html" . -}}
+    
+
+    {{ block "head" . }}{{ end }}
+  </head>
+  <body>
+    
+    {{ partial "navigation.html" . }}
+    
+    <main>
+    {{ block "main" . }}{{ end }}
+    </main>
+    
+    {{ partial "footer.html" . }}
+
+        <script src="/assets/js/common.js"></script>
+
+    
+    {{ if ne .Params.navtype "plain" }}
+    <script src="/assets/js/navbar.js"></script>
+    {{ end }}
+    
+
+            
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{ $postStyles := resources.Get "css/post.scss" | toCSS }}
+<link rel="stylesheet" href="{{ $postStyles.Permalink }}" />
+{{ $tagStyles := resources.Get "css/tags.scss" | toCSS }}
+<link rel="stylesheet" href="{{ $tagStyles.Permalink }}" />
+
+
+<div id="post-splash" class="splash">
+    <div class="container">
+        <div id="splash-text" class="post-desc">
+            <div id="post-head">
+                <span id="post-date">{{ .Params.time }} {{ if isset .Params "last-update" }} (Updated {{ index .Params "last-update" }}) {{ end }}</span> {{ if isset .Params "show-read-time" }} ·
+                <div class="icon">schedule</div> {{ .ReadingTime }} minute read {{ end }}
+            </div>
+            <div id="post-title">{{ .Title }}</div>
+            <div id="post-time"></div>
+            <div id="post-desc">{{ .Params.desc }}</div>
+            <div id="post-tags">
+                tags: {{ range .Params.tags }}
+                <a class="tag-link" href={{ "/tags/" | relLangURL }}{{ . | urlize }}
+                    rel="category tag">
+                    <span class="post-tag">{{ . }}</span>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    <a id="scroll-arrow" class="page-anchor-offset post-arrow" href="#post-contents">
+        <div class="icon">keyboard_arrow_down</div>
+    </a>
+
+</div>
+
+<div id="post-contents" class="container">
+    {{ .Content }}
+    <script src="https://utteranc.es/client.js" repo="abiramen/site-utterances" issue-term="pathname" label="utteranc.es" theme="preferred-color-scheme" crossorigin="anonymous" async>
+    </script>
+</div>
+
+{{ end }}

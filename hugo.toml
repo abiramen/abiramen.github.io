@@ -1,0 +1,50 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = "abiramen's site"
+# theme = ''
+
+[params]
+  description = "Abiram's personal website!"
+
+[menu]
+  [[menu.main]]
+    name = 'posts'
+    pageRef = '/posts'
+    weight = 10
+  [[menu.main]]
+    name = 'projects'
+    pageRef = '/projects'
+    weight = 20
+  [[menu.main]]
+    name = 'about'
+    pageRef = '/about'
+    weight = 30
+
+[build]
+
+[permalinks]
+  posts = '/:slug/'
+
+[sass]
+  transpiler = "dart"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+    [markup.goldmark.extensions]
+      Footnote = true
+
+
+[mediaTypes]
+  [mediaTypes."text/css"]
+    suffixes = ["css", "scss"]
+    delimiter = "."
+  [mediaTypes."application/javascript"]
+    suffixes = ["js"]
+
+
+

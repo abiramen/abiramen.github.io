@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{ $tagStyles := resources.Get "css/tags.scss" | toCSS }}
+<link rel="stylesheet" href="{{ $tagStyles.Permalink }}"/>
+
+<section id="page-section" class="container">
+    <h2>all posts</h2> 
+    <ul id = "project-list">
+    {{ range .Pages }} 
+        {{ partial "snippet.html" . }}
+    {{ end }}
+    </ul>
+    <h6 class="ralign"><a href="/posts/index.xml" target="_blank">RSS (Atom) feed<span class="icon">keyboard_arrow_right</span></a></h6>
+</section>
+{{ end }}

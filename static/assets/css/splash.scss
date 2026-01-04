@@ -1,0 +1,86 @@
+.splash {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#landing-splash {
+    background: $bg;
+}
+
+#splash-glow {
+    color: rgb(211,255,255);
+    background-image: linear-gradient(135deg, $pastel-blue, $pastel-pink);
+    background-size: 130% 130%;
+    animation-delay: -1s;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    animation: AnimateSplash 1.5s ease infinite;
+}
+
+@keyframes AnimateSplash {
+    0% {background-position:0% 10%}
+    50% {background-position:50% 50%}
+    100% {background-position:0% 10%}
+}
+
+#splash-text {
+    color: #e9e9e9;
+    font-family: "Cascadia Code";
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+#splash-desc {
+    min-height: 2 * 1.5 * 1.6rem;
+}
+
+#splash-title {
+    font-family: 'Metropolis';
+    font-weight: bolder;
+    font-size: 5rem;
+    overflow-wrap: break-word;
+    margin-top: 3rem;
+    line-height: 1.2;
+}
+
+#splash-name {
+    font-weight: 800;
+}
+
+#scroll-arrow {
+    text-decoration: none;
+    font-size: 4rem;
+    color: #e9e9e9 !important;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    transition: transform 0.3s;
+}
+
+#scroll-arrow:hover {
+    transform: scale(1.06);
+}
+
+.flashing-cursor {
+    background: $pastel-blue;
+    display: inline-block;
+    width: 0.125rem;
+    height: 1.1em;
+    animation: cursor 1s infinite step-start;
+    transform: translateY(0.2rem);
+}
+
+@keyframes cursor {
+    from, to {opacity: 0;}
+    50% {opacity: 1;}
+}
+
+#splash-line1-hidden, #splash-line2-hidden {
+    opacity: 0;
+}

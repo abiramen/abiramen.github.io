@@ -1,0 +1,322 @@
+---
+date: 2020-09-18
+slug: wsl-github
+short: wsl-github
+title: Setting up WSL and GitHub (archive)
+time: 13 April 2020
+last-update: 29 January 2021
+layout: post
+tags: ["unsw-cse", "guide", "win-terminal", "wsl", "git"]
+desc: Start coding locally with the Windows Subsystem for Linux, and learn some basic Git to store copies of your work.
+---
+
+<div class="alert alert-red">
+    This post is no longer up to date. I generally now advise most people use WSL 2. I may or may not write an updated version of this post in the future.
+</div>
+
+<p>
+    If you're a UNSW student, there's a good chance that you're here from my CSE setup guide for vscode.
+    This is
+    going to be a short guide to setting up WSL, which provides you with a Linux environment within Windows. To go
+    through
+    the WSL section, you'll need to be on Windows 10. If you're here just to learn some basic Git, you can
+    <a href="#git">click here</a> to skip all the Windows stuff, free of charge!
+</p>
+
+<h2 id="wsl">Coding locally on your Windows 10 computer with WSL</h2>
+<p>Windows 10 now supports running Linux distributions from within it. We can set this up so that we can easily
+    use a lot of the Linux commands and scripting which is taught in UNSW CSE degrees. You can even use your new Linux
+    setup to go on and learn other languages over breaks, such as <a href="https://doc.rust-lang.org/book/"
+        target="_blank">Rust</a>.
+    <br><br>
+    Before we proceed, there's two versions of WSL that you can use - WSL1 and WSL2. For most people, especially those
+    of you that are relatively new to programming, WSL1 is the best option. WSL2 is still a bit rough around the edges,
+    and you can always upgrade later. WSL2 also doesn't play very nicely with Type 2 Hypervisors such as VirtualBox and vmware, since it uses Hyper-V - this will restrict you to using Hyper-V for any virtual machines that you decide to make. If you're someone that uses Docker or really
+    needs native Linux GUIs, <a href="#wsl2">click here for instructions on how to install WSL2.</a>
+</p>
+
+<h3>Installing WSL1</h3>
+<div class="alert">
+    You need to be on at least Windows 10 version 1803 to use WSL. You can check your Windows version by opening
+    Search and entering <code>winver</code>.
+    If you need to update Windows, go
+    <a target="_blank" href="https://support.microsoft.com/en-au/help/3159635">here</a>.
+</div>
+
+<ol>
+    <li>
+        <strong>Open PowerShell.</strong> Type in PowerShell into Windows Search, right click on the result and
+        click <strong>Run as administrator</strong>. Select Yes if a prompt shows up.
+    </li>
+    <li>
+        <strong>Run the following command:</strong>
+        <pre>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</pre>
+        If you are prompted to restart your computer, do so.
+    </li>
+    <li>
+        <strong>Open the Microsoft Store.</strong> You can again do this using Windows Search.
+    </li>
+    <li>
+        <strong>Search for Ubuntu and install it.</strong> Ubuntu currently has the best support for WSL.
+    </li>
+    <li>
+        <strong>Once installed, open Ubuntu.</strong> You can do this by opening Search and typing in
+        <code>bash</code>. Once you do this, a terminal should open!
+    </li>
+    <li>
+        <strong>You'll be guided through setting up an account.</strong> Make sure you remember what password
+        you use.
+    </li>
+    <li>
+        <strong>We can now install a C compiler.</strong> We'll be using gcc. You can use it just like dcc, but
+        you'll get less helpful error messages. To install, run the following command:
+        <pre>sudo apt-get install build-essential</pre>
+        Enter your password when prompted.
+    </li>
+    <li>
+        <strong>Run the following command to make sure everything is up to date.</strong>
+        <pre>sudo apt update && sudo apt upgrade</pre>
+    </li>
+</ol>
+<p>
+    You should now be able to use the text based Linux commands you learn during the course, replacing dcc with
+    gcc. (Note: If you've learnt about <code>dcc --leak-check</code>, it won't work with gcc.)<br>
+    If you use VSCode, you can use <code>code [filename]</code> to open a file. If you use Vim, Vim will work as
+    normal. However, gedit won't work. Google 'wsl x server' if you're really desperate to use it.
+</p>
+
+<p>
+    If you want a prettier terminal with more features to use with WSL, <a href="#wt">click here</a>
+    to jump to those instructions. If you want to install dcc, <a href="#dcc">click here</a>.
+</p>
+
+
+<h3 id="wsl2">Installing WSL2</h3>
+<div class="alert">
+    You need to be on at least Windows 10 version 1903 to use WSL2. If you aren't, you should probably use WSL1.
+</div>
+<ol>
+    <li>
+        <strong>Follow Step 1 and 2 from the above section.</strong>
+    </li>
+    <li>
+        <strong>Run</strong> <code>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code>
+        in the same PowerShell window.
+    </li>
+    <li>
+        <strong>Download and run</strong> <a href="https://aka.ms/wsl2kernel" target="_blank">this installer from Microsoft.</a>
+    </li>
+    <li>
+        <strong>Run </strong> <code>wsl --set-default-version 2</code> in PowerShell.
+    </li>
+    
+    <li>
+        <strong>Follow Step 3 onwards from the above section.</strong>
+    </li>
+</ol>
+
+
+<h4>Why is WSL2 seemingly eating my RAM?</h4>
+<p>
+    If you have WSL2 running for a while, you might see a process called Vmmem in Task Manager eating up all your RAM. You can
+    be relieved to know that this isn't the result of malware, but WSL2 using memory for cache. However, this isn't an issue
+    whatsoever - if another process on your computer needs more RAM, WSL2 will reduce its cache usage - in fact, Windows itself
+    uses any remaining unused RAM as cache to speed up your computer, because unused RAM is wasted RAM.
+</p>
+<p>
+    If this RAM usage still somewhat irrationally annoys you, you can do one of the following:
+    <ul>
+        <li>
+            <strong>Run the following command in your WSL2 terminal.</strong> 
+            <code>sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Cached RAM and Swap Cleared'\"</code>
+        </li>
+        <li>
+            Go to <code>%userprofile%</code> in File Explorer (by entering it into the address bar) and creating a file called .wslconfig and entering
+            the following:
+<pre>
+[wsl2]
+memory=4096MB
+</pre>
+            This restricts WSL2 to 4GB of RAM. If you're running Docker containers from WSL2, I encourage you to let WSL2 use at least half your system
+            memory - I have mine at 12GB, or 60%. If you don't know what Docker is, you can just ignore this.
+        </li>
+    </ul>
+</p>
+
+<h2 id="dcc">Installing dcc</h2>
+
+<p>Your mileage may vary, but you can install dcc locally! Run the following commands:</p>
+<ol>
+    <li><code>curl -L https://github.com/COMP1511UNSW/dcc/releases/download/2.6.4/dcc_2.6.4_all.deb -o
+            /tmp/dcc_2.6.4_all.deb</code><br>curl is
+        a utility in Linux to download files from the internet. You may also see wget sometimes, which is very
+        similar.
+    </li>
+    <li>
+        <code>sudo apt install /tmp/dcc_2.6.4_all.deb</code><br>This installs the package we just downloaded.
+    </li>
+</ol>
+
+<p>
+    Now, try compiling and running a program. If this doesn't work, run the command<br>
+    <code>
+    sudo bash -c "echo 0 > /proc/sys/kernel/yama/ptrace_scope;echo 1 > /proc/sys/vm/overcommit_memory"
+    </code>,
+    but only do this <strong>if you really need to.</strong>
+</p>
+<p>
+    Note that you should still follow the steps to install build-essential from earlier because it has a lot
+    of other useful tools.
+</p>
+
+<h2 id="wt">Very optional but very cool: Installing Windows Terminal</h2>
+<p>This part is very very optional, but installs <a target="_blank" rel="noopener noreferrer"
+        href="https://www.youtube.com/watch?v=8gw0rXPMMPE">Windows Terminal</a>, which allows you to access cmd,
+    powershell and bash in one place, open multiple terminals (even side-by-side), and most importantly, use themes!</p>
+<img style="max-width:100%" class="post-image" src="/assets/images/blog/cse-setup-old/wt.jpg" alt="Windows Terminal" />
+<div class="alert">
+    You need to be on at least Windows 10 version 1909 for this to work. You can check your Windows version by opening
+    Search and entering <code>winver</code>.
+    If you're need to update Windows, go <a target="_blank" rel="noopener noreferrer"
+        href="https://support.microsoft.com/en-au/help/3159635/windows-10-update-assistant">here</a>.
+</div>
+<ol>
+    <li><strong>Open the Microsoft Store.</strong></li>
+    <li><strong>Search for Windows Terminal and install it.</strong> Once installed, you can open it by entering
+        <code>wt</code> or searching Windows Terminal in Search.</li>
+    <li><strong>If you want, you can adjust settings.</strong> If you know how to read a JSON file, use
+        <kbd>Ctrl+,</kbd> to access settings. You can even find themes <a target="_blank" rel="noopener noreferrer"
+            href="https://terminalsplash.com">here</a>.</li>
+</ol>
+<h2 id="git">Setting up Git and GitHub</h2>
+<p>
+    Git is a really useful tool which allows you backup your code, revert to older versions, keep track of changes,
+    update and pull your code from multiple devices,
+    and provides several tools to allow you to work collaboratively. This is called version control.
+</p>
+<h3>Signing up for GitHub</h3>
+<p><em>Every</em> developer has a GitHub account. GitHub provides servers for you to host your code, using Git.
+</p>
+<ol>
+    <li><strong>Sign up for GitHub <a target="_blank" rel="noopener noreferrer"
+                href="https://github.com/join">here</a>.</strong>
+        This shouldn't take more than a minute</li>
+    <li><strong>Get the GitHub Education Pack!</strong> GitHub Education is really handy. Students
+        can get GitHub Pro, as well as heaps of other useful tools for free</strong>.
+        Visit <a href="https://education.github.com/pack" target="_blank"
+            rel="noopener noreferrer">education.github.com</a> to sign up!</li>
+    <li><strong>Follow someone on GitHub for the first time!</strong> You can score bonus points by <abbr
+            title="Obviously me creating this post was just a ploy to get GitHub followers :P">following me</abbr>
+        <a href="https://github.com/abiramen/" target="_blank" rel="noopener noreferrer">here</a> :)</li>
+    <li><strong>Create your first repository <a href="https://github.com/new" target="_blank"
+                rel="noopener noreferrer">here</a>.</strong> Think of a
+        repository (or repo for short) as somewhere you store all your code for a project. Perhaps call your
+        repo hello-world.</li>
+</ol>
+<p>Note: If you're ever using GitHub for coursework, make sure that you make your repo private to prevent
+    plagiarism.</p>
+<h3>Installing Git</h3>
+<p>If you're working on VNC, or with the CSE machines over SSH, Git is already installed on these machines!
+    Otherwise, you'll need to install Git.</p>
+<h5>For Ubuntu/Debian (including WSL):</h5>
+<p>
+    Run <code>sudo apt-get install git</code> from your terminal.
+</p>
+<h5>For Windows and macOS:</h5>
+<p>Download Git from <a target="_blank" rel="noopener noreferrer" href="https://git-scm.com/downloads">here</a>, and
+    follow the
+    instructions to install.</p>
+<h4>Setting up Git on each machine</h4>
+<ol>
+    <li><strong>Telling Git your name. </strong>Run <code>git config --global user.name "yourusername"</code> -
+        I
+        usually just use my GitHub username here.</li>
+    <li><strong>Telling Git your email. </strong>Run <code>git config --global user.email
+            "name@example.com"</code> - I usually use the private GitHub email ending with
+        @users.noreply.github.com,
+        which can be found <a target="_blank" rel="noopener noreferrer"
+            href="https://github.com/settings/emails">here</a> under 'Keep email addresses
+        private'.</li>
+</ol>
+<h3>Making use of our new repo</h3>
+<p>Now, we want to make use of our repo, and push code to it.</p>
+<ol>
+    <li><strong>Create a folder </strong> called HelloWorld somewhere on your computer.</li>
+    <li><strong>Open a terminal</strong> and use <code>cd</code> until you're in your new folder.</li>
+    <li><strong>Initialise a <em>local</em> repository</strong> using the command <code>git init</code>. This
+        means you've set up a repository within your own computer, which tracks changes.</li>
+    <li>
+        <strong>Make a hello_world.c file in the folder.</strong>
+        Here's some code for you to steal.
+        <pre>
+#include &lt;stdio.h&gt;
+int main(void) {
+    printf("Hello world!");
+    return 0;
+}
+</pre>
+    </li>
+    <li><strong>Run <code>git add hello_world.c</code>.</strong> This tells git that you want changes to the
+        file to be
+        included in the next update. If you ever have multiple files that you want to update, use
+        <code>git add --all</code>.</li>
+    <li><strong>Run <code>git commit -m "Initialise repo"</code>.</strong> This keeps track of the update,
+        noting what changes you've made, and stores it on the <em>local copy of the repository</em>. Your commit
+        message should always describe the changes you've made (in present tense!).</li>
+    <li><strong>Now, we want to sync our local repository with our remote repository on GitHub.</strong> The
+        first time we do this, we have to tell git where our remote repository is. We do this with
+        <code>git remote add origin https://github.com/your-username/your-repo-name.git</code></li>
+    <li><strong>We can finally push the change to our remote repository.</strong> Use <code>git push</code>.</li>
+</ol>
+<p>You should now see your hello_world.c file at https://github.com/your-username/your-repo-name!<br> You should
+    always commit and push your code whenever you've
+    made a notable change, so that you can revert your code if you ever have problems later on. Note that
+    git will
+    ask for your GitHub password each time you push. We can avoid this by <a href="#ssh-git"
+        class="page-anchor-offset">setting up an SSH
+        keypair</a>, which you can scroll down to read about.</p>
+<h3>Using git to work across multiple computers</h3>
+<p>We can make a copy of our hello-world repository on another computer using
+    <code>git clone https://github.com/your-username/your-repo-name.git</code>. This sets up a new local
+    repository with the contents
+    from the remote repository. Now, we can work on our code on this new computer, and use git add, commit and
+    push
+    to update our GitHub repository just like before. Now, when we return to our
+    original computer, we run
+    <code>git pull</code> to fetch updates from the remote repository. as soon as we start. This is <strong>very
+        important</strong> to do
+    - if you don't, and realise too late, you'll have to deal with resolving what's called a merge conflict.</p>
+<p>
+    There is much, much more to Git. If you want to learn more about Git, and you're a UNSW student, take COMP1531,
+    which teaches you all about Git, especially in the context of teamwork. You can also learn from the slides for this
+    <a href="http://bit.ly/GitGud2020Slides"></a>CSESoc workshop.</a>
+</p> <img style="max-width:100%" class="post-image" src="/assets/images/blog/cse-setup-old/git.jpg" alt="Git" />
+
+<h2 id="ssh-git">Using SSH keypairs to push to GitHub</h2>
+<h3>Part 1: Generating a keypair</h3>
+<p>
+    You'll first need to generate a keypair. If you haven't done this, check out the guide in my
+    <a href="/cse-setup#ssh-vsc" target="_blank">other post.</a> If you have, you can use the same
+    keypair.
+</p>
+
+<h3>Part 2: Adding your public key to GitHub</h3>
+<ol>
+    <li><strong>Open the GitHub Key Settings page. </strong> <a target="_blank"
+            href="https://github.com/settings/ssh/">You can find it here.</a> Press Add SSH key.</li>
+    <li><strong>Give the key a name to describe what computer it is from.</strong> This is so that you don't get
+        mixed up if you add more computers.</li>
+    <li><strong>Paste the public key you copied earlier.</strong> Press Add when you are done.</li>
+</ol>
+<img class="post-image" style="max-width:100%" src="/assets/images/blog/cse-setup-old/ssh-github.jpg" alt="GitHub" />
+<h3>Part 3: Updating your local repositories</h3>
+<p>If you already have any local repositories, you need to update them to use the SSH Git path. To do this,
+    <code>cd</code> to the directory, and enter
+    <code>git remote set-url origin git@github.com:your-username/your-repo-name</code>. <br>If you clone or set
+    up any new repositories, you will also have
+    to use the SSH address, i.e. <code>git clone git@github.com:your-username/your-repo-name</code>. If you're
+    ever unsure as to the SSH path, you can check
+    on GitHub.
+</p>
+<img class="post-image" style="max-width:100%" src="/assets/images/blog/cse-setup-old/ssh-repo.jpg"
+    alt="SSH key for a repo" />

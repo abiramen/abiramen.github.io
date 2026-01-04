@@ -1,0 +1,28 @@
+<nav id = "navbar">
+    <div id="nav-contain">
+        <a href="{{ "/" | relURL }}" id="navbar-logo">
+            <img src="{{ "/assets/images/ramen-logo.png" | relURL }}" alt="neon-logo" id="logo"/>
+        </a>
+        <div id="nav-home">
+            <a href="{{ "/" | relURL }}" id="navbar-name">@abiramen</a>
+        </div>
+
+        <div id="nav-right">
+            <a href="{{ "/about" | relURL }}">about</a>
+            <a href="{{ "/posts" | relURL }}">posts</a>
+        </div>
+
+        <img src="{{ "/assets/images/hamburger.svg" | relURL }}" alt="hamburger" id="hamburger"/>
+        <div id="nav-border"></div>
+    </div>
+</nav>
+
+<div id="overlay">
+    <span id="overlay-close">&times;</span>
+    <div id="overlay-content">
+        <a href="{{ "/" | relURL }}"><img src="{{ "/assets/images/ramen-logo.png" | relURL }}" alt="neon-logo" id="overlay-logo"/></a>
+        <h3>@abiramen</h3>
+        <a href="{{ "/about" | relURL }}">about</a>
+        <a href="{{ "/posts" | relURL }}">posts</a>
+    </div>
+</div>

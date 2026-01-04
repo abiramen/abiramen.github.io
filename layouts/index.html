@@ -1,0 +1,49 @@
+{{ define "main" }}
+<div id="landing-splash" class="splash">
+    <div class="container">
+        <div id="splash-text">
+            <div id="splash-title">
+               i'm <span id="splash-glow">abiram</span>.
+            </div>
+            <div id="splash-desc">
+                <span id="splash-line1"></span><div id="cursor-1" class="flashing-cursor"></div><span id="splash-line1-hidden">// full-time computer security engineer</span>
+                <br>
+                <span id="splash-line2"></span><div id="cursor-2" class="flashing-cursor"></div><span id="splash-line2-hidden">// educator (and recent alumni) at UNSW</span>
+            </div>
+        </div>
+    </div>
+    <a id="scroll-arrow" class="page-anchor-offset" href="#showcase-section"><div class="icon">keyboard_arrow_down</div></a>
+</div>
+
+<section id="showcase-section">
+    <div class="container">
+        <h2>latest posts</h2>
+        
+        {{ $pages := where .Site.RegularPages "Type" "posts" }}
+        {{ range $index, $page := first 2 $pages }}
+            {{ $color := "#d6a2c5" }}
+            {{ if eq $index 1 }}
+                {{ $color = "#aba8ff" }}
+            {{ end }}
+            {{ partial "showcase.html" (dict "page" . "color" $color) }}
+        {{ end }}
+        
+        <h3 class="ralign"><a href="/posts">see all posts <span class="icon">keyboard_arrow_right</span></a></h3>
+    </div>
+</section>
+
+<section id = "faq-section">
+    <div class="container">
+        <h2>foreseeably asked questions</h2>
+        
+        {{ range .Site.Data.faq }}
+        <p>
+            <strong>Q: {{ .q }}</strong><br>
+            {{ .a }}
+        </p>
+        {{ end }}
+    </div>
+</section>
+
+<script src="/assets/js/landing.js"></script>
+{{ end }}
